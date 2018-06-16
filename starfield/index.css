@@ -1,0 +1,637 @@
+/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}
+
+/* ######################################## */
+/* VARIABLES */
+:root {
+  --white: #FFFFFF;
+  --darkgray: #1B1D22;
+  --gray: #24262A;
+  --lightgray: #676A71;
+
+  --titlefont: "Sanchez", serif;
+  --bodyfont: "Rubik", Ariel, sans-serif;
+  
+  --fly-in-speed: 1.1s;
+  --fly-in-stagger: 0.15s;
+  --hover-fade-speed: 0.7s;
+  --highlight-border-speed: 0.33s;
+  
+  --border-radius: 3px;
+  --portrait-border-width: 4px;
+  --left-item-width: 150px;
+  --thumbnail-length: 117px;
+}
+
+
+
+
+
+
+/* ######################################## */
+/* FIXES */
+
+/* fixes problem where font size creates unexpected spacing on links */
+#pr #portrait-avatar, 
+#pr #portrait-avatar *,
+#pr #signature-owner-avatar, 
+#pr #signature-owner-avatar * {
+  font-size: 0pt;
+}
+
+/* fixes phantom spacing underneath images */
+#pr img {
+  vertical-align: middle;
+}
+
+
+
+
+
+
+
+/* ######################################## */
+/* GENERAL FORMATTING */
+
+/* the main body of the page */
+#pr {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  padding: 0px 10px;
+}
+
+#pr * {
+  font-family: var(--bodyfont);
+  font-size: 11pt;
+  color: var(--white);
+}
+
+/* splits islands into different columns */
+#pr .column {
+  /* we set margin-bottom here to 20px - .island's margin bottom */
+  margin: 20px 7px 6px 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* the left column only */
+#pr #left-col {
+  width: 222px;
+}
+
+/* the right column only */
+#pr #right-col {
+  width: 750px;
+}
+
+/* an island sits on top of the background, and slides in */
+#pr .island {
+  background-color: var(--darkgray);
+  border: 1px white solid;
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 14px;
+  width: 100%;
+
+  /* stuff related to island animations */
+  animation-duration: var(--fly-in-speed);
+  animation-timing-function: cubic-bezier(.25, 1, .5, 1);
+  animation-fill-mode: backwards;
+  position: relative;
+}
+
+/* when the user hovers over an island */
+#pr .island:hover {
+  /* change the border to transparent nothing, for the sake of the highlight border */
+  border: 1px hsla(0, 0%, 100%, 0) solid;
+}
+
+#pr #portrait:hover {
+  /* change the border to transparent nothing, for the sake of the highlight border */
+  border: var(--portrait-border-width) hsla(0, 0%, 100%, 0) double;
+}
+
+#pr .island * {
+  /* all transitions in islands should take this long */
+  transition-duration: var(--highlight-border-speed);
+}
+
+#pr .island, #pr #portrait {
+  /* make the white line disappearing take twice as long */
+  transition-duration: calc( var(--highlight-border-speed) * 2 );
+}
+
+/* the border around an island itself */
+#pr .island:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* adjust by one pixel to accomodate border's width*/
+  left: -1px;
+  top: -1px;
+  z-index: 1;
+  /* draw the border itself... this is hidden until user hover's over island */
+  border: 1px var(--highlight-color) solid;
+  border-radius: var(--border-radius);
+  /* make sure the pseudo-element can't be clicked */
+  pointer-events: none;
+
+  /* play the drawing in reverse, destroying the highlight border */
+  animation: borderErase var(--highlight-border-speed) ease-out 0s forwards;
+}
+
+#pr .island:hover:before {
+  /* play the drawing forwards, revealing the highlight border */
+  animation: borderDraw var(--highlight-border-speed) ease-out 0s backwards;
+}
+
+/* specifics to the pseudo-element on the portrait, which has a double border */
+#pr #portrait:before {
+  border-style: double;
+  border-width: var(--portrait-border-width);
+  border-radius: calc( var(--border-radius) + var(--portrait-border-width) );
+  left: calc( -1 * var(--portrait-border-width) );
+  top: calc( -1 * var(--portrait-border-width) );
+}
+
+/* animations for drawing the border around an island */
+@keyframes borderDraw {
+  0%   { clip-path: polygon( 50%  50%, -50% -50%, -50% -50%, -50% -50%, -50% -50%,  -50% -50%); }
+  25%  { clip-path: polygon( 50%  50%, -50% -50%, 150% -50%, 150% -50%, 150% -50%,  150% -50%); }
+  50%  { clip-path: polygon( 50%  50%, -50% -50%, 150% -50%, 150% 150%, 150% 150%,  150% 150%); }
+  75%  { clip-path: polygon( 50%  50%, -50% -50%, 150% -50%, 150% 150%, -50% 150%,  -50% 150%); }
+  100% { clip-path: polygon( 50%  50%, -50% -50%, 150% -50%, 150% 150%, -50% 150%,  -50% -50%); }
+}
+
+@keyframes borderErase {
+  100% { clip-path: polygon( 50%  50%, -50% -50%, -50% -50%, -50% -50%, -50% -50%,  -50% -50%); }
+  75%  { clip-path: polygon( 50%  50%, -50% -50%, 150% -50%, 150% -50%, 150% -50%,  150% -50%); }
+  50%  { clip-path: polygon( 50%  50%, -50% -50%, 150% -50%, 150% 150%, 150% 150%,  150% 150%); }
+  25%  { clip-path: polygon( 50%  50%, -50% -50%, 150% -50%, 150% 150%, -50% 150%,  -50% 150%); }
+  0%   { clip-path: polygon( 50%  50%, -50% -50%, 150% -50%, 150% 150%, -50% 150%,  -50% -50%); }
+}
+
+/* for subtitles */
+#pr .subtitle {
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: var(--titlefont);
+  font-size: 10pt;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* text to transition to the highlight color on island hover */
+#pr .island:hover .subtitle, 
+#pr .island:hover .item-left, 
+#pr .island:hover #portrait-name a, 
+#pr .island:hover #portrait-title a, 
+#pr .island:hover #signature-owner-name a, 
+#pr .island:hover #signature-signature a {
+  color: var(--highlight-color);
+}
+
+/* text to transition back to white on link hover */ 
+
+#pr .island #portrait-name a:hover, 
+#pr .island #portrait-title a:hover, 
+#pr .island #signature-owner-name a:hover, 
+#pr .island #signature-signature a:hover {
+  color: white;
+}
+
+/* animations for islands sliding in */
+@keyframes slideInFromLeft {
+  from {
+    right: calc(100vw);
+  }
+  to {
+    right: 0%;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    left: calc(100vw);
+  }
+  to {
+    left: 0%;
+  }
+}
+
+/* islands slide in based on what side they're on */
+#pr .left-island {
+  animation-name: slideInFromLeft;
+
+  /* as well as some flex justification stuff */
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+#pr .right-island {
+  animation-name: slideInFromRight;
+
+  /* as well as some flex justification stuff */
+  display: flex;
+  flex-flow: column;
+}
+
+/* stagger the arrival of every island when sliding in */
+#pr .column >:nth-child(1) { animation-delay: 0s; }
+#pr .column >:nth-child(2) { animation-delay: calc( var(--fly-in-stagger) * 1 ); }
+#pr .column >:nth-child(3) { animation-delay: calc( var(--fly-in-stagger) * 2 ); }
+#pr .column >:nth-child(4) { animation-delay: calc( var(--fly-in-stagger) * 3 ); }
+#pr .column >:nth-child(5) { animation-delay: calc( var(--fly-in-stagger) * 4 ); }
+#pr .column >:nth-child(6) { animation-delay: calc( var(--fly-in-stagger) * 5 ); }
+#pr .column >:nth-child(7) { animation-delay: calc( var(--fly-in-stagger) * 6 ); }
+#pr .column >:nth-child(8) { animation-delay: calc( var(--fly-in-stagger) * 7 ); }
+#pr .column >:nth-child(9) { animation-delay: calc( var(--fly-in-stagger) * 8 ); }
+#pr .column >:nth-child(10){ animation-delay: calc( var(--fly-in-stagger) * 9 ); }
+
+/* for the link inside of buttons */
+#pr .pr-button a {
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  border: 1px white solid;
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  padding: 3px 5px;
+  font-size: 10pt;
+}
+
+#pr .pr-button a.enabled {
+  /* move the enabled button up on top of the disabled button */
+  position: relative;
+  top: -100%;
+}
+
+#pr .pr-button a.disabled {
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+#pr .pr-button a:hover {
+  background-color: var(--lightgray);
+}
+
+
+
+
+
+
+
+
+/* ######################################## */
+/* CHARACTER PORTRAIT */
+
+/* the entire portrait box itself */
+#pr #portrait {
+  width: auto;
+  border: var(--portrait-border-width) white double;
+  border-radius: calc( var(--border-radius) + var(--portrait-border-width) );
+  text-align: center;
+}
+
+/* give the image a little roundedness */
+#pr #portrait-avatar img {
+  border-radius: var(--border-radius);
+}
+
+/* everything inside of the name and title */
+#pr #portrait-name *, 
+#pr #portrait-title * {
+  font-family: var(--titlefont);
+  text-transform: uppercase;
+}
+
+/* adds a little space between things in the portrait */
+#pr #portrait-name { margin-top: 10px; }
+#pr #portrait-quote { margin-top: 6px; }
+
+/* everything inside of the name */
+#pr #portrait-name * {
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+/* everything inside of the title */
+#pr #portrait-title * {
+  font-size: 10pt;
+}
+
+/* just the quote in the portrait */
+#pr #portrait-quote p {
+  font-size: 10pt;
+  font-style: italic;
+}
+
+/* ######################################## */
+/* OWNER */
+
+#pr #signature-owner {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#pr #signature-owner-avatar * {
+  width: 50px;
+  border-radius: var(--border-radius);
+}
+
+#pr #signature-owner-name {
+  margin-left: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#pr #signature-owner-name a {
+  font-size: 14pt;
+}
+
+#pr #signature-signature {
+  font-size: 10pt;
+  margin-top: 10px;
+  width: 100%;
+}
+
+#pr #signature-signature * {
+  font-size: 10pt;
+}
+
+
+
+
+
+
+
+/* ######################################## */
+/* TAGS */
+
+#pr #tags {
+  /* make up for the fact that template-tags have 3px margins on bottom and right*/
+  padding: 10px 4px 4px 10px;
+}
+
+/* adjusting the box of tags itself*/
+#pr #tags-tags {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+/* applied to each individual tag */
+#pr .pr-button.template-tag a {
+  margin-bottom: 6px;
+  margin-right: 6px;
+}
+
+
+
+
+
+
+
+
+
+/* ######################################## */
+/* GALLERY */
+
+/* make the subtitle bar a flex container */
+#pr #gallery .subtitle {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+/* button in subtitle shouldn't have any margins */
+#pr #gallery .subtitle .pr-button,
+#pr #gallery .subtitle .pr-button a {
+  margin: 0;
+}
+
+#pr #gallery .subtitle .pr-button a {
+  font-size: 8pt;
+  font-weight: normal;
+  padding: 4px 5px 2px 5px;
+}
+
+#pr #gallery-bar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#pr #gallery-bar .pr-button a {
+  /* stretch to the height of the gallery bar */
+  height: 100%;
+  width: 40px;
+  margin: 0;
+  
+  /* big bold arrows */
+  font-family: var(--titlefont);
+  font-size: 20pt;
+  
+  /* center the text within the link */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* this helps center just a tiny bit more, shifts the text up */
+  padding-bottom: 8px;
+}
+
+#pr #gallery-thumbs {
+  width: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+#pr .thumb:nth-child(1),
+#pr .thumb:nth-child(6) {
+  margin-left: 0;
+}
+
+#pr .thumb:nth-child(1),
+#pr .thumb:nth-child(2),
+#pr .thumb:nth-child(3),
+#pr .thumb:nth-child(4),
+#pr .thumb:nth-child(5) {
+  margin-top: 0;
+}
+
+#pr .thumb {
+  /* give the thumbnails some breathing room */
+  margin: 10px 0 0 10px;
+  display: inline-block;
+  width: var(--thumbnail-length);
+  height: var(--thumbnail-length);
+}
+
+#pr .thumb a img {
+  width: var(--thumbnail-length);
+  height: var(--thumbnail-length);
+  border-radius: var(--border-radius);
+  object-fit: cover;
+  object-position: 50% 50%;
+  font-size: 0pt;
+}
+
+
+
+
+
+/* ######################################## */
+/* PALETTE */
+
+#pr #colors-palette {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#pr .template-color {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 5px;
+}
+
+#pr .template-color:nth-child(1) {
+  margin-top: 0px;
+}
+
+#pr .color-name {
+  font-size: 10pt;
+  margin-right: 5px;
+}
+
+#pr .color {
+  width: 65px;
+  padding: 5px;
+  border-radius: var(--border-radius);
+}
+
+#pr .color-hex {
+  font-size: 9pt;
+  text-transform: uppercase;
+  text-align: center;
+  /* ridiculously, this gives the hex codes a black outline. it's important. */
+  text-shadow: 1.3px 0px black, 1.3px 1.3px black, 0px 1.3px black, -1.3px 1.3px black, -1.3px 0px black, 0px -1.3px black, 1.3px -1.3px black,  1.3px 0px black, 1.3px 1.3px black, 0px 1.3px black, -1.3px 1.3px black, -1.3px 0px black, 0px -1.3px black, 1.3px -1.3px black;
+  /* keep it smooth... this may actually not be necessary */
+  -webkit-font-smoothing: antialiased;
+}
+
+
+
+
+
+
+
+
+
+
+/* ######################################## */
+/* RIGHT COLUMN */
+
+#pr .item {
+  display: flex;
+  margin-top: 7px;
+}
+
+#pr .item-left {
+  min-width: var(--left-item-width);
+  text-align: right;
+  margin-right: 8px;
+  font-size: 10pt;
+  text-transform: uppercase;
+}
+
+#pr .item:nth-child(2) {
+  margin-top: 0px;
+}
+
+#pr #character-sheet-image img,
+#pr #featured-image-image img {
+  width: 100%;
+  border-radius: var(--border-radius);
+}
+
+
+
+
+
+
+
+
+
+/* ######################################## */
+/* BACKGROUND */
+
+#star-bg-dim, #star-bg-small, #star-bg-big {
+  position: absolute;
+  height: 1000vh;
+  width: 1000vw;
+  top: -200vh;
+  left: -200vw;
+  image-rendering: pixelated;
+  animation-name: drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+#star-bg-dim {
+  background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/160-14-QAi1I.png") repeat;
+  animation-duration: 220s;
+}
+#star-bg-small {
+  background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/161-14-KWPbx.png") repeat;
+  animation-duration: 160s;
+}
+#star-bg-big {
+  background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/162-14-E971A.png") repeat;
+  animation-duration: 100s;
+}
+
+@keyframes drift {
+  from {
+    top: -200vh;
+    left: -200vw;
+  }
+  to {
+    top: calc(-200vh + 1000px);
+    left: calc(-200vw + 2000px);
+  }
+}
+
+
+
+
+
+
+
+/* ######################################## */
+/* CHANGES TO PREEXISTING ELEMENTS */
+
+/* change color of the entire background */
+.sbc-wrap {
+  background-color: var(--gray);
+}
+
+/* change properties of default header and footer */
+#sbcheader, #sbcfooter {
+  background-color: var(--darkgray);
+}
+
+#sbcfooter * {
+  font-family: var(--bodyfont);
+}
