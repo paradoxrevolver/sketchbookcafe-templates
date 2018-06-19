@@ -7,7 +7,7 @@
   <div id="star-bg-dim"></div>
   <div id="star-bg-small"></div>
   <div id="star-bg-big"></div>
-
+  
   <!-- ################################### -->
   <!-- left column -->
   <div class="column" id="left-col">
@@ -782,71 +782,76 @@
         RPG
       </div>
 
-      {block:strength}
-      <div class="item">
-        <div class="item-left">
-          Strength:
+      <!-- a little bit of fancy footwork on the six attributes-->
+      <div id="rpg-stats">
+        
+        {block:strength}
+        <div class="rpg-stat">
+          <div class="item-left">
+            Strength
+          </div>
+          <div class="item-right">
+            {strength}
+          </div>
         </div>
-        <div class="item-right">
-          {strength}
-        </div>
-      </div>
-      {/block:strength}
+        {/block:strength}
 
-      {block:intelligence}
-      <div class="item">
-        <div class="item-left">
-          Intelligence:
+        {block:intelligence}
+        <div class="rpg-stat">
+          <div class="item-left">
+            Intelligence
+          </div>
+          <div class="item-right">
+            {intelligence}
+          </div>
         </div>
-        <div class="item-right">
-          {intelligence}
-        </div>
-      </div>
-      {/block:intelligence}
+        {/block:intelligence}
 
-      {block:wisdom}
-      <div class="item">
-        <div class="item-left">
-          Wisdom:
+        {block:wisdom}
+        <div class="rpg-stat">
+          <div class="item-left">
+            Wisdom
+          </div>
+          <div class="item-right">
+            {wisdom}
+          </div>
         </div>
-        <div class="item-right">
-          {wisdom}
-        </div>
-      </div>
-      {/block:wisdom}
+        {/block:wisdom}
 
-      {block:dexterity}
-      <div class="item">
-        <div class="item-left">
-          Dexterity:
+        {block:dexterity}
+        <div class="rpg-stat">
+          <div class="item-left">
+            Dexterity
+          </div>
+          <div class="item-right">
+            {dexterity}
+          </div>
         </div>
-        <div class="item-right">
-          {dexterity}
-        </div>
-      </div>
-      {/block:dexterity}
+        {/block:dexterity}
 
-      {block:constitution}
-      <div class="item">
-        <div class="item-left">
-          Constitution:
+        {block:constitution}
+        <div class="rpg-stat">
+          <div class="item-left">
+            Constitution
+          </div>
+          <div class="item-right">
+            {constitution}
+          </div>
         </div>
-        <div class="item-right">
-          {constitution}
-        </div>
-      </div>
-      {/block:constitution}
+        {/block:constitution}
 
-      {block:charisma}
-      <div class="item">
-        <div class="item-left">
-          Charisma:
+        {block:charisma}
+        <div class="rpg-stat">
+          <div class="item-left">
+            Charisma
+          </div>
+          <div class="item-right">
+            {charisma}
+          </div>
         </div>
-        <div class="item-right">
-          {charisma}
-        </div>
+        {/block:charisma}
+      
       </div>
-      {/block:charisma}
 
       {block:rpg_class}
       <div class="item">

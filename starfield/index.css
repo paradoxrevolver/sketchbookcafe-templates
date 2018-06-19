@@ -20,6 +20,7 @@
   --portrait-border-width: 4px;
   --left-item-width: 150px;
   --thumbnail-length: 117px;
+  --rpg-stat-width: 100px;
 }
 
 
@@ -59,6 +60,7 @@
   overflow: hidden;
   position: relative;
   padding: 0px 10px;
+  flex-grow: 1;
 }
 
 #pr * {
@@ -535,6 +537,45 @@
 
 
 
+/* ######################################## */
+/* RPG DETAILS */
+
+#pr #rpg-stats {
+  width: 100%;
+  
+  /* for things within this div */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+#pr .rpg-stat {
+  min-width: var(--rpg-stat-width);
+  margin: 5px;
+  border: 1px white solid;
+  border-radius: var(--border-radius);
+
+  /* for things within this div */
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#pr .rpg-stat .item-left {
+  text-align: center;
+  border-bottom: 1px white solid;
+  min-width: 100%;
+  padding: 3px 0;
+}
+
+#pr .rpg-stat .item-right {
+  text-align: center;
+  font-size: 24pt;
+  margin: 21px 0;
+}
+
+#pr .island:hover .rpg-stat .item-left {
+  color: white;
+}
 
 
 
@@ -625,6 +666,8 @@
 /* change color of the entire background */
 .sbc-wrap {
   background-color: var(--gray);
+  display: flex;
+  flex-direction: column;
 }
 
 /* change properties of default header and footer */
