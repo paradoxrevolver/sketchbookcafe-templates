@@ -1,0 +1,146 @@
+/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}
+
+/*************/
+/* VARIABLES */
+
+:root {
+  --bodyfont: "Raleway", Ariel, sans-serif;
+  
+  --darkblue: #3c5b90;
+  --darkercyan: #2ca0d1;
+  --darkcyan: #28a9ce;
+  --cyan: #1bc9c5;
+  --lightcyan: #02dfc0;
+  --lightercyan: #91e3e5;
+  --white: #ffffff;
+  
+  --header-height: 30px;
+  --footer-height: 30px;
+}
+
+
+
+
+
+
+/*******************/
+/* GENERAL CHANGES */
+
+div, p, a, .sbcheader-item {
+  font-family: var(--bodyfont);
+}
+
+#pr {
+  /* #pr grows to fill the entire space between header and footer */
+  flex-grow: 1;
+  
+  /* put it behind everything */
+  z-index: -2;
+  background-color: var(--lightercyan);
+  
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+
+
+/********************/
+/* BACKGROUND STUFF */
+
+.bg-cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bg-bubbles {
+  height: 500%;
+  width: 200%;
+  animation: bubble linear both infinite;  
+}
+
+/* smallest bubbles */
+#bg-gradient-small {
+  background: linear-gradient( var(--darkcyan), var(--darkcyan) 15%, transparent 100% );
+}
+
+#bg-bubbles-small-1 {
+  background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/192-14-o8MAc.png") repeat;
+  animation-duration: 10s;
+}
+
+#bg-bubbles-small-2 {
+  background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/192-14-o8MAc.png") repeat;
+  animation-duration: 12s;
+  left: -350px;
+}
+
+/* medium bubbles */
+#bg-gradient-mid {
+  background: linear-gradient( var(--cyan), var(--cyan) 30%, transparent 100% );
+}
+
+#bg-bubbles-mid-1 {
+  background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/191-14-hOOzZ.png") repeat;
+  animation-duration: 17s;
+}
+
+#bg-bubbles-mid-2 {
+  background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/191-14-hOOzZ.png") repeat;
+  animation-duration: 19s;
+  left: -590px;
+}
+
+/* large bubbles */
+#bg-gradient-large {
+  background: linear-gradient( var(--lightcyan), var(--lightcyan) 45%, transparent 100% );
+}
+
+#bg-bubbles-large-1 {
+  background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/190-14-MKJIH.png") repeat;
+  animation-duration: 29s;
+}
+
+#bg-bubbles-large-2 {
+  background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/190-14-MKJIH.png") repeat;
+  animation-duration: 31s;
+  left: -470px;
+}
+
+@keyframes bubble {
+  0% { 
+    top: 0;
+  }
+  100% {
+    top: -1000px;
+  }
+}
+
+
+/******************************/
+/* CHANGES TO PRESET ELEMENTS */
+
+.sbc-wrap {
+  background-color: transparent;
+  /* make the header, body, and footer be flex children */
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#sbcheader, #sbcfooter {
+  background-color: var(--darkblue);
+}
+
+.sbcheader-item:hover {
+  background-color: var(--darkercyan);
+}
+
+.sbcheader-title {
+  font-size: 9.7pt;
+}
