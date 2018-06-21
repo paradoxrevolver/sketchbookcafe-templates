@@ -6,12 +6,16 @@
 :root {
   --bodyfont: "Raleway", Ariel, sans-serif;
   
-  --darkblue: #3c5b90;
-  --darkercyan: #2ca0d1;
-  --darkcyan: #28a9ce;
-  --cyan: #1bc9c5;
-  --lightcyan: #02dfc0;
-  --lightercyan: #91e3e5;
+  /* header and footer colors */
+  --darkblue: #34487d;
+  /* slightly darker than the darkest part of the bg*/
+  --darkercyan: #307CBF;
+  /* four main background colors */
+  --darkcyan: #3b8dd1;
+  --cyan: #5aa8d9;
+  --lightcyan: #70c8e3;
+  --lightercyan: #89e9f0;
+  /* in case the white highlight needs to be adjusted*/
   --white: #ffffff;
   
   --header-height: 30px;
@@ -30,19 +34,51 @@ div, p, a, .sbcheader-item {
   font-family: var(--bodyfont);
 }
 
+p {
+  font-size: 10pt;
+  color: var(--white);
+}
+
+.image, .image a, .image img {
+  font-size: 0pt;
+  display: block;
+}
+
 #pr {
   /* #pr grows to fill the entire space between header and footer */
   flex-grow: 1;
-  
   /* put it behind everything */
-  z-index: -2;
+  z-index: 0;
   background-color: var(--lightercyan);
-  
+  /* necessary for the background images*/
   position: relative;
   overflow: hidden;
 }
 
+.island {
+  margin: 5px;
+  padding: 5px;
+  background-color: var(--darkblue);
+  border-radius: 7px;
+}
 
+/* rows that deserve to be the entire width of their parent */
+#top-half, #bottom-half {
+  width: 100%;
+}
+
+#main-col {
+  z-index: 1;
+  width: 800px;
+}
+
+#top-left-side {
+  width: 200px;
+}
+
+#top-right-side {
+  flex-grow: 1;
+}
 
 
 
@@ -55,7 +91,7 @@ div, p, a, .sbcheader-item {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 0;
   overflow: hidden;
 }
 
@@ -93,7 +129,7 @@ div, p, a, .sbcheader-item {
 
 #bg-bubbles-mid-2 {
   background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/191-14-hOOzZ.png") repeat;
-  animation-duration: 19s;
+  animation-duration: 21s;
   left: -590px;
 }
 
@@ -104,12 +140,12 @@ div, p, a, .sbcheader-item {
 
 #bg-bubbles-large-1 {
   background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/190-14-MKJIH.png") repeat;
-  animation-duration: 29s;
+  animation-duration: 27s;
 }
 
 #bg-bubbles-large-2 {
   background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/190-14-MKJIH.png") repeat;
-  animation-duration: 31s;
+  animation-duration: 33s;
   left: -470px;
 }
 
@@ -123,6 +159,40 @@ div, p, a, .sbcheader-item {
 }
 
 
+
+/* flex helpers that i made */
+
+.flex                { display: flex; flex-wrap: wrap; align-content: flex-start; }
+
+.flex.row            { flex-direction: row;    }
+.flex.column         { flex-direction: column; }
+
+.flex.row.reverse    { flex-direction: row-reverse;    }
+.flex.column.reverse { flex-direction: column-reverse; }
+
+.flex.nowrap         { flex-wrap: nowrap; }
+
+.flex.row.left       { justify-content: flex-start; }
+.flex.row.center     { justify-content: center;     }
+.flex.row.right      { justify-content: flex-end;   }
+.flex.row.top        { align-items: flex-start; align-content: flex-start; }
+.flex.row.middle     { align-items: center;     align-content: center;     }
+.flex.row.bottom     { align-items: flex-end;   align-content: flex-end;   }
+
+.flex.column.left    { align-items: flex-start; align-content: flex-start; }
+.flex.column.center  { align-items: center;     align-content: center;     }
+.flex.column.right   { align-items: flex-end;   align-content: flex-end;   }
+.flex.column.top     { justify-content: flex-start; }
+.flex.column.middle  { justify-content: center;     }
+.flex.column.bottom  { justify-content: flex-end;   }
+
+.flex.row.reverse.left      { justify-content: flex-end;   }
+.flex.row.reverse.right     { justify-content: flex-start; }
+.flex.column.reverse.top    { justify-content: flex-end;   }
+.flex.column.reverse.bottom { justify-content: flex-start; }
+
+
+
 /******************************/
 /* CHANGES TO PRESET ELEMENTS */
 
@@ -134,11 +204,12 @@ div, p, a, .sbcheader-item {
 }
 
 #sbcheader, #sbcfooter {
+  z-index: 1;
   background-color: var(--darkblue);
 }
 
 .sbcheader-item:hover {
-  background-color: var(--darkercyan);
+  background-color: var(--darkcyan);
 }
 
 .sbcheader-title {

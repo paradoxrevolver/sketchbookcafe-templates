@@ -1,7 +1,9 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-<div id="pr" style="--highlight-color: #{color_value0}">
+<!-- template body -->
+<div id="pr" class="flex column center" style="--highlight-color: #{color_value0}">
   
+  <!-- background stuff -->
   <div id="bg-bubbles-large-1" class="bg-cover bg-bubbles"></div>
   <div id="bg-bubbles-large-2" class="bg-cover bg-bubbles"></div>
   <div id="bg-gradient-large" class="bg-cover"></div>
@@ -13,5 +15,34 @@
   <div id="bg-bubbles-small-1" class="bg-cover bg-bubbles"></div>
   <div id="bg-bubbles-small-2" class="bg-cover bg-bubbles"></div>
   <div id="bg-gradient-small" class="bg-cover"></div>
+  
+  <!-- start actual content -->
+  <div id="main-col" class="flex column">
+    <!-- top half includes character portrait and details -->
+    <div id="top-half" class="flex row">
+      <!-- includes character portrait and navigation -->
+      <div id="top-left-side">
+        
+        {block:portrait_url}
+        <div id="portrait" class="island">
+          <div id="portrait-avatar" class="image">
+            <a href="{character_url}">
+              <img src="{portrait_url}">
+            </a>
+          </div>
+        </div>
+        {/block:portrait_url}
+        
+      </div>
+      <!-- includes character details-->
+      <div id="top-right-side" class="island">
+        <p>top right side</p>
+      </div>
+    </div>
+    <!-- bottom half includes character gallery -->
+    <div id="bottom-half">
+      <div></div>
+    </div>
+  </div>
   
 </div>
