@@ -4,6 +4,7 @@
 /* VARIABLES */
 
 :root {
+  --titlefont: "Righteous", sans-serif;
   --bodyfont: "Raleway", Ariel, sans-serif;
   
   /* header and footer colors */
@@ -17,9 +18,15 @@
   --lightercyan: #89e9f0;
   /* in case the white highlight needs to be adjusted*/
   --white: #ffffff;
-  
+
+  --left-side-width: 220px;
+  --thumbnail-length: 100px;
   --header-height: 30px;
   --footer-height: 30px;
+  --border-radius: 5px;
+  --spacing-small: 5px;
+  --spacing-med: 7px;
+  --spacing-large: 10px;
 }
 
 
@@ -34,14 +41,29 @@ div, p, a, .sbcheader-item {
   font-family: var(--bodyfont);
 }
 
-p {
+#pr * {
   font-size: 10pt;
   color: var(--white);
 }
 
-.image, .image a, .image img {
+#pr a, #pr a * {
+  color: var(--cyan);
+}
+
+#pr a:hover, #pr a:hover * {
+  color: var(--white);
+}
+
+#pr .image, #pr .image a, #pr .image img {
+  /* should fix weird link and image spacing problems*/
   font-size: 0pt;
   display: block;
+  /* make images the parent's width and not enormous */
+  width: 100%;
+}
+
+#pr .image img {
+  border-radius: var(--border-radius);
 }
 
 #pr {
@@ -53,31 +75,212 @@ p {
   /* necessary for the background images*/
   position: relative;
   overflow: hidden;
+  /* give the header and footer some space */
+  padding: calc(var(--spacing-small) * 2) var(--spacing-small) var(--spacing-small) var(--spacing-small);
 }
 
-.island {
-  margin: 5px;
-  padding: 5px;
+#pr .island {
+  margin: 0 var(--spacing-small) calc(var(--spacing-small) * 2) var(--spacing-small);
+  padding: var(--spacing-med);
   background-color: var(--darkblue);
-  border-radius: 7px;
+  border-radius: var(--border-radius);
 }
 
 /* rows that deserve to be the entire width of their parent */
-#top-half, #bottom-half {
+#pr #top-half, #pr #bottom-half {
   width: 100%;
 }
 
-#main-col {
+#pr #main-col {
   z-index: 1;
-  width: 800px;
+  width: 1000px;
 }
 
-#top-left-side {
-  width: 200px;
+#pr #left-side {
+  width: var(--left-side-width);
+  text-align: right;
 }
 
-#top-right-side {
+#pr #right-side {
+  /* right side should take up all the space it can to fill the main column */
   flex-grow: 1;
+}
+
+
+
+/**********************/
+/* CHARACTER PORTRAIT */
+
+#pr #portrait, #pr #portrait img {
+  border-radius: 50%;
+}
+
+
+
+/********************/
+/* CHARACTER HEADER */
+
+#pr #character-header {
+  justify-content: space-between;
+}
+
+#pr #signature-owner-avatar img {
+  width: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/****************/
+/* TAB CHANGING */
+#pr input, #pr .details {
+  display: none;
+}
+
+#input-main:checked ~ #main,
+#input-character:checked ~ #character,
+#input-body:checked ~ #body,
+#input-personality:checked ~ #personality,
+#input-lifestyle:checked ~ #lifestyle,
+#input-rpg:checked ~ #rpg {
+  display: block;
+}
+
+#pr #tab-list label {
+  box-sizing: border-box;
+  width: var(--left-side-width);
+  cursor: pointer;
+  /* make the label text bold */
+  font-family: var(--titlefont);
+  text-transform: uppercase;
+}
+
+#pr #tab-list label:hover {
+  background-color: var(--darkcyan);
+}
+
+#pr .subtitle {
+  /* make the subtitle text bold */
+  font-family: var(--titlefont);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-small);
+}
+
+/* modifying all button links*/
+#pr .pr-button a {
+  display: inline-block;
+  border: 1px var(--cyan) solid;
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  padding: 3px 5px;
+  font-size: 10pt;
+}
+
+#pr .pr-button a.enabled {
+  /* move the enabled button up on top of the disabled button */
+  position: relative;
+  top: -100%;
+}
+
+#pr .pr-button a.disabled {
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+#pr .pr-button a:hover {
+  background-color: var(--cyan);
+}
+
+
+
+
+
+
+/***********/
+/* GALLERY */
+
+
+#pr #gallery .subtitle {
+  /* put as much space between the gallery's subtitle and link as possible */
+  justify-content: space-between;
+}
+
+/* button in subtitle shouldn't have any margins */
+#pr #gallery .subtitle .pr-button,
+#pr #gallery .subtitle .pr-button a {
+  margin: 0;
+}
+
+#pr #gallery .subtitle .pr-button a {
+  font-size: 8pt;
+  font-weight: normal;
+  padding: 4px 5px 2px 5px;
+}
+
+#pr #gallery-bar {
+  width: 100%;
+  justify-content: space-between;
+}
+
+#pr #gallery-bar .pr-button a {
+  margin: 0;
+
+  /* big bold arrows */
+  font-family: var(--titlefont);
+  font-size: 20pt;
+
+  /* center the text within the link */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* this helps center just a tiny bit more, shifts the text up */
+  padding-bottom: 8px;
+}
+
+#pr #gallery-thumbs {
+  width: auto;
+  margin: 0 10px;
+}
+
+#pr .thumb:nth-child(1),
+#pr .thumb:nth-child(6) {
+  margin-left: 0;
+}
+
+#pr .thumb:nth-child(1),
+#pr .thumb:nth-child(2),
+#pr .thumb:nth-child(3),
+#pr .thumb:nth-child(4),
+#pr .thumb:nth-child(5) {
+  margin-top: 0;
+}
+
+#pr .thumb {
+  /* give the thumbnails some breathing room */
+  margin: 10px 0 0 10px;
+  display: inline-block;
+  width: var(--thumbnail-length);
+  height: var(--thumbnail-length);
+}
+
+#pr .thumb a img {
+  width: var(--thumbnail-length);
+  height: var(--thumbnail-length);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  font-size: 0pt;
+}
+
+#pr #gallery-bar .pr-button {
+  border-radius: 50%;
 }
 
 
@@ -85,7 +288,7 @@ p {
 /********************/
 /* BACKGROUND STUFF */
 
-.bg-cover {
+#pr .bg-cover {
   position: absolute;
   left: 0;
   top: 0;
@@ -95,55 +298,55 @@ p {
   overflow: hidden;
 }
 
-.bg-bubbles {
+#pr .bg-bubbles {
   height: 500%;
   width: 200%;
   animation: bubble linear both infinite;  
 }
 
 /* smallest bubbles */
-#bg-gradient-small {
+#pr #bg-gradient-small {
   background: linear-gradient( var(--darkcyan), var(--darkcyan) 15%, transparent 100% );
 }
 
-#bg-bubbles-small-1 {
+#pr #bg-bubbles-small-1 {
   background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/192-14-o8MAc.png") repeat;
   animation-duration: 10s;
 }
 
-#bg-bubbles-small-2 {
+#pr #bg-bubbles-small-2 {
   background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/192-14-o8MAc.png") repeat;
   animation-duration: 12s;
   left: -350px;
 }
 
 /* medium bubbles */
-#bg-gradient-mid {
+#pr #bg-gradient-mid {
   background: linear-gradient( var(--cyan), var(--cyan) 30%, transparent 100% );
 }
 
-#bg-bubbles-mid-1 {
+#pr #bg-bubbles-mid-1 {
   background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/191-14-hOOzZ.png") repeat;
   animation-duration: 17s;
 }
 
-#bg-bubbles-mid-2 {
+#pr #bg-bubbles-mid-2 {
   background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/191-14-hOOzZ.png") repeat;
   animation-duration: 21s;
   left: -590px;
 }
 
 /* large bubbles */
-#bg-gradient-large {
+#pr #bg-gradient-large {
   background: linear-gradient( var(--lightcyan), var(--lightcyan) 45%, transparent 100% );
 }
 
-#bg-bubbles-large-1 {
+#pr #bg-bubbles-large-1 {
   background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/190-14-MKJIH.png") repeat;
   animation-duration: 27s;
 }
 
-#bg-bubbles-large-2 {
+#pr #bg-bubbles-large-2 {
   background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/190-14-MKJIH.png") repeat;
   animation-duration: 33s;
   left: -470px;
