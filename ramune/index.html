@@ -1,7 +1,7 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway|Righteous" rel="stylesheet">
 
 <!-- template body -->
-<div id="pr" class="flex column center" style="--highlight-color: #{color_value0}">
+<div id="pr" class="flex column center">
 
   <!-- background stuff -->
   <div id="bg-bubbles-large-1" class="bg-cover bg-bubbles"></div>
@@ -18,6 +18,15 @@
 
   <!-- start actual content -->
   <div id="main-col" class="flex row nowrap">
+
+    <!-- inputs need to be a parent of pretty much everything, so they're up here -->
+    <input id="input-main"        type="radio" name="tab-input" class="tab-input" checked="checked">
+    <input id="input-character"   type="radio" name="tab-input" class="tab-input">
+    <input id="input-body"        type="radio" name="tab-input" class="tab-input">
+    <input id="input-personality" type="radio" name="tab-input" class="tab-input">
+    <input id="input-lifestyle"   type="radio" name="tab-input" class="tab-input">
+    <input id="input-rpg"         type="radio" name="tab-input" class="tab-input">
+    
     <!-- includes character portrait and navigation -->
     <div id="left-side">
 
@@ -31,25 +40,45 @@
       </div>
       {/block:portrait_url}
 
-      <div id="tab-list" class="flex column center">
-        <label for="input-main" class="island">Main</label>
+      <!-- The creator's signature, to show who created this character-->
+      <div id="character-header-signature" class="island flex column">
+        <div class="subtitle">
+          Owner
+        </div>
+        <div id="signature-owner" class="content flex row middle">
+          <a id="signature-owner-avatar" href="{owner_url}">
+            <img src="{owner_avatar}">
+          </a>
+          <div id="signature-owner-name">
+            {owner_username}
+          </div>
+        </div>
+        {block:character_signature}
+        <div id="signature-signature">
+          {character_signature}
+        </div>
+        {/block:character_signature}
+      </div>
 
-        <label for="input-character" class="island">Character</label>
+      <div id="tab-list" class="flex column center">
+        <label for="input-main" class="island input-main">Main</label>
+
+        <label for="input-character" class="island input-character">Character</label>
 
         {block:hasbody}
-        <label for="input-body" class="island">Body</label>
+        <label for="input-body" class="island input-body">Body</label>
         {/block:hasbody}
 
         {block:haspersonality}
-        <label for="input-personality" class="island">Personality</label>
+        <label for="input-personality" class="island input-personality">Personality</label>
         {/block:haspersonality}
 
         {block:haslifestyle}
-        <label for="input-lifestyle" class="island">Lifestyle</label>
+        <label for="input-lifestyle" class="island input-lifestyle">Lifestyle</label>
         {/block:haslifestyle}
 
         {block:hasrpg}
-        <label for="input-rpg" class="island">RPG</label>
+        <label for="input-rpg" class="island input-rpg">RPG</label>
         {/block:hasrpg}
 
       </div>
@@ -60,7 +89,7 @@
         <div class="subtitle">
           Featured Image
         </div>
-        <div id="featured-image-image" class="image">
+        <div id="featured-image-image" class="content image">
           <img src="{featured_image_url}">
         </div>
       </div>
@@ -71,8 +100,7 @@
     <div id="right-side">
       <!-- the brief header for the character is an island -->
       <div id="character-header" class="island flex row nowrap">
-
-        <div id="character-header-nametag">
+        <div id="nametag" class="flex column">
           {block:name}
           <div id="nametag-name"> 
             <a href="{character_url}">
@@ -92,41 +120,15 @@
           {block:quote}
           <div id="nametag-quote">
             <p>
-              "{quote}"
+              {quote}
             </p>
           </div>
           {/block:quote}
-        </div>
-
-        <!-- The creator's signature, to show who created this character-->
-        <div id="character-header-signature">
-          <div class="subtitle">
-            Owner
-          </div>
-          <div id="signature-owner">
-            <a id="signature-owner-avatar" href="{owner_url}">
-              <img src="{owner_avatar}">
-            </a>
-            <div id="signature-owner-name">
-              {owner_username}
-            </div>
-          </div>
-          {block:character_signature}
-          <div id="signature-signature">
-            {character_signature}
-          </div>
-          {/block:character_signature}
         </div>
       </div>
 
       <!-- the block of details that change are its own island-->
       <div id="details" class="island">
-        <input id="input-main"        type="radio" name="tab-input" class="tab-input" checked="checked">
-        <input id="input-character"   type="radio" name="tab-input" class="tab-input">
-        <input id="input-body"        type="radio" name="tab-input" class="tab-input">
-        <input id="input-personality" type="radio" name="tab-input" class="tab-input">
-        <input id="input-lifestyle"   type="radio" name="tab-input" class="tab-input">
-        <input id="input-rpg"         type="radio" name="tab-input" class="tab-input">
 
         <!---------------------------------------->
         <!-- Main details -->
@@ -138,79 +140,78 @@
           <!---------------------------------------->
           <!-- Character Sheet -->
           {block:character_sheet_url}
-          <div id="character-sheet">
-            <div class="subtitle">
-              Character Sheet
-            </div>
-            <div id="character-sheet-image" class="image">
+          <div id="character-sheet" class="content-box">
+            <div id="character-sheet-image" class="content image">
               <img src="{character_sheet_url}">
             </div>
           </div>
           {/block:character_sheet_url}
 
 
-          <!---------------------------------------->
-          <!-- Description -->
-          {block:description}
-          <div id="description" class="details">
-            <div class="subtitle">
-              Description
-            </div>
+          <div class="flex row nowrap">
+            <!---------------------------------------->
+            <!-- Description -->
+            {block:description}
+            <div id="description" class="content-box">
+              <div class="subtitle">
+                Description
+              </div>
 
-            <div id="description-text">
-              {description}
+              <div id="description-text" class="content">
+                {description}
+              </div>
             </div>
-          </div>
-          {/block:description}
+            {/block:description}
 
-          <!-- The tags on this character -->
-          {block:hastags}
-          <div id="tags">
-            <div class="subtitle">
-              Tags
+            <!-- The tags on this character -->
+            {block:hastags}
+            <div id="tags" class="content-box">
+              <div class="subtitle">
+                Tags
+              </div>
+              <div id="tags-tags" class="content flex row">
+                {block:tag0}<div class="pr-button template-tag">{tag0}</div>{/block:tag0}
+                {block:tag1}<div class="pr-button template-tag">{tag1}</div>{/block:tag1}
+                {block:tag2}<div class="pr-button template-tag">{tag2}</div>{/block:tag2}
+                {block:tag3}<div class="pr-button template-tag">{tag3}</div>{/block:tag3}
+                {block:tag4}<div class="pr-button template-tag">{tag4}</div>{/block:tag4}
+                {block:tag5}<div class="pr-button template-tag">{tag5}</div>{/block:tag5}
+                {block:tag6}<div class="pr-button template-tag">{tag6}</div>{/block:tag6}
+                {block:tag7}<div class="pr-button template-tag">{tag7}</div>{/block:tag7}
+                {block:tag8}<div class="pr-button template-tag">{tag8}</div>{/block:tag8}
+                {block:tag9}<div class="pr-button template-tag">{tag9}</div>{/block:tag9}
+              </div>
             </div>
-            <div id="tags-tags">
-              {block:tag0}<div class="pr-button template-tag">{tag0}</div>{/block:tag0}
-              {block:tag1}<div class="pr-button template-tag">{tag1}</div>{/block:tag1}
-              {block:tag2}<div class="pr-button template-tag">{tag2}</div>{/block:tag2}
-              {block:tag3}<div class="pr-button template-tag">{tag3}</div>{/block:tag3}
-              {block:tag4}<div class="pr-button template-tag">{tag4}</div>{/block:tag4}
-              {block:tag5}<div class="pr-button template-tag">{tag5}</div>{/block:tag5}
-              {block:tag6}<div class="pr-button template-tag">{tag6}</div>{/block:tag6}
-              {block:tag7}<div class="pr-button template-tag">{tag7}</div>{/block:tag7}
-              {block:tag8}<div class="pr-button template-tag">{tag8}</div>{/block:tag8}
-              {block:tag9}<div class="pr-button template-tag">{tag9}</div>{/block:tag9}
-            </div>
+            {/block:hastags}
           </div>
-          {/block:hastags}
 
           <!-- This character's color palette -->
           {block:hascolors}
-          <div id="colors">
+          <div id="colors" class="content-box">
             <div class="subtitle">
               Palette
             </div>
-            <div id="colors-palette">
-              {block:color_value0} <div class="template-color"><div class="color-name">{color_name0} </div><div class="color" style="background-color: #{color_value0} ;"><div class="color-hex">#{color_value0} </div></div></div>{/block:color_value0}
-              {block:color_value1} <div class="template-color"><div class="color-name">{color_name1} </div><div class="color" style="background-color: #{color_value1} ;"><div class="color-hex">#{color_value1} </div></div></div>{/block:color_value1}
-              {block:color_value2} <div class="template-color"><div class="color-name">{color_name2} </div><div class="color" style="background-color: #{color_value2} ;"><div class="color-hex">#{color_value2} </div></div></div>{/block:color_value2}
-              {block:color_value3} <div class="template-color"><div class="color-name">{color_name3} </div><div class="color" style="background-color: #{color_value3} ;"><div class="color-hex">#{color_value3} </div></div></div>{/block:color_value3}
-              {block:color_value4} <div class="template-color"><div class="color-name">{color_name4} </div><div class="color" style="background-color: #{color_value4} ;"><div class="color-hex">#{color_value4} </div></div></div>{/block:color_value4}
-              {block:color_value5} <div class="template-color"><div class="color-name">{color_name5} </div><div class="color" style="background-color: #{color_value5} ;"><div class="color-hex">#{color_value5} </div></div></div>{/block:color_value5}
-              {block:color_value6} <div class="template-color"><div class="color-name">{color_name6} </div><div class="color" style="background-color: #{color_value6} ;"><div class="color-hex">#{color_value6} </div></div></div>{/block:color_value6}
-              {block:color_value7} <div class="template-color"><div class="color-name">{color_name7} </div><div class="color" style="background-color: #{color_value7} ;"><div class="color-hex">#{color_value7} </div></div></div>{/block:color_value7}
-              {block:color_value8} <div class="template-color"><div class="color-name">{color_name8} </div><div class="color" style="background-color: #{color_value8} ;"><div class="color-hex">#{color_value8} </div></div></div>{/block:color_value8}
-              {block:color_value9} <div class="template-color"><div class="color-name">{color_name9} </div><div class="color" style="background-color: #{color_value9} ;"><div class="color-hex">#{color_value9} </div></div></div>{/block:color_value9}
-              {block:color_value10}<div class="template-color"><div class="color-name">{color_name10}</div><div class="color" style="background-color: #{color_value10};"><div class="color-hex">#{color_value10}</div></div></div>{/block:color_value10}
-              {block:color_value11}<div class="template-color"><div class="color-name">{color_name11}</div><div class="color" style="background-color: #{color_value11};"><div class="color-hex">#{color_value11}</div></div></div>{/block:color_value11}
-              {block:color_value12}<div class="template-color"><div class="color-name">{color_name12}</div><div class="color" style="background-color: #{color_value12};"><div class="color-hex">#{color_value12}</div></div></div>{/block:color_value12}
-              {block:color_value13}<div class="template-color"><div class="color-name">{color_name13}</div><div class="color" style="background-color: #{color_value13};"><div class="color-hex">#{color_value13}</div></div></div>{/block:color_value13}
-              {block:color_value14}<div class="template-color"><div class="color-name">{color_name14}</div><div class="color" style="background-color: #{color_value14};"><div class="color-hex">#{color_value14}</div></div></div>{/block:color_value14}
-              {block:color_value15}<div class="template-color"><div class="color-name">{color_name15}</div><div class="color" style="background-color: #{color_value15};"><div class="color-hex">#{color_value15}</div></div></div>{/block:color_value15}
-              {block:color_value16}<div class="template-color"><div class="color-name">{color_name16}</div><div class="color" style="background-color: #{color_value16};"><div class="color-hex">#{color_value16}</div></div></div>{/block:color_value16}
-              {block:color_value17}<div class="template-color"><div class="color-name">{color_name17}</div><div class="color" style="background-color: #{color_value17};"><div class="color-hex">#{color_value17}</div></div></div>{/block:color_value17}
-              {block:color_value18}<div class="template-color"><div class="color-name">{color_name18}</div><div class="color" style="background-color: #{color_value18};"><div class="color-hex">#{color_value18}</div></div></div>{/block:color_value18}
-              {block:color_value19}<div class="template-color"><div class="color-name">{color_name19}</div><div class="color" style="background-color: #{color_value19};"><div class="color-hex">#{color_value19}</div></div></div>{/block:color_value19}
+            <div id="colors-palette" class="content flex row">
+              {block:color_value0} <div class="template-color"><div class="color-name">{color_name0} </div><div class="color" style="background-color: #{color_value0} ;"></div><div class="color-hex">#{color_value0} </div></div>{/block:color_value0}
+              {block:color_value1} <div class="template-color"><div class="color-name">{color_name1} </div><div class="color" style="background-color: #{color_value1} ;"></div><div class="color-hex">#{color_value1} </div></div>{/block:color_value1}
+              {block:color_value2} <div class="template-color"><div class="color-name">{color_name2} </div><div class="color" style="background-color: #{color_value2} ;"></div><div class="color-hex">#{color_value2} </div></div>{/block:color_value2}
+              {block:color_value3} <div class="template-color"><div class="color-name">{color_name3} </div><div class="color" style="background-color: #{color_value3} ;"></div><div class="color-hex">#{color_value3} </div></div>{/block:color_value3}
+              {block:color_value4} <div class="template-color"><div class="color-name">{color_name4} </div><div class="color" style="background-color: #{color_value4} ;"></div><div class="color-hex">#{color_value4} </div></div>{/block:color_value4}
+              {block:color_value5} <div class="template-color"><div class="color-name">{color_name5} </div><div class="color" style="background-color: #{color_value5} ;"></div><div class="color-hex">#{color_value5} </div></div>{/block:color_value5}
+              {block:color_value6} <div class="template-color"><div class="color-name">{color_name6} </div><div class="color" style="background-color: #{color_value6} ;"></div><div class="color-hex">#{color_value6} </div></div>{/block:color_value6}
+              {block:color_value7} <div class="template-color"><div class="color-name">{color_name7} </div><div class="color" style="background-color: #{color_value7} ;"></div><div class="color-hex">#{color_value7} </div></div>{/block:color_value7}
+              {block:color_value8} <div class="template-color"><div class="color-name">{color_name8} </div><div class="color" style="background-color: #{color_value8} ;"></div><div class="color-hex">#{color_value8} </div></div>{/block:color_value8}
+              {block:color_value9} <div class="template-color"><div class="color-name">{color_name9} </div><div class="color" style="background-color: #{color_value9} ;"></div><div class="color-hex">#{color_value9} </div></div>{/block:color_value9}
+              {block:color_value10}<div class="template-color"><div class="color-name">{color_name10}</div><div class="color" style="background-color: #{color_value10};"></div><div class="color-hex">#{color_value10}</div></div>{/block:color_value10}
+              {block:color_value11}<div class="template-color"><div class="color-name">{color_name11}</div><div class="color" style="background-color: #{color_value11};"></div><div class="color-hex">#{color_value11}</div></div>{/block:color_value11}
+              {block:color_value12}<div class="template-color"><div class="color-name">{color_name12}</div><div class="color" style="background-color: #{color_value12};"></div><div class="color-hex">#{color_value12}</div></div>{/block:color_value12}
+              {block:color_value13}<div class="template-color"><div class="color-name">{color_name13}</div><div class="color" style="background-color: #{color_value13};"></div><div class="color-hex">#{color_value13}</div></div>{/block:color_value13}
+              {block:color_value14}<div class="template-color"><div class="color-name">{color_name14}</div><div class="color" style="background-color: #{color_value14};"></div><div class="color-hex">#{color_value14}</div></div>{/block:color_value14}
+              {block:color_value15}<div class="template-color"><div class="color-name">{color_name15}</div><div class="color" style="background-color: #{color_value15};"></div><div class="color-hex">#{color_value15}</div></div>{/block:color_value15}
+              {block:color_value16}<div class="template-color"><div class="color-name">{color_name16}</div><div class="color" style="background-color: #{color_value16};"></div><div class="color-hex">#{color_value16}</div></div>{/block:color_value16}
+              {block:color_value17}<div class="template-color"><div class="color-name">{color_name17}</div><div class="color" style="background-color: #{color_value17};"></div><div class="color-hex">#{color_value17}</div></div>{/block:color_value17}
+              {block:color_value18}<div class="template-color"><div class="color-name">{color_name18}</div><div class="color" style="background-color: #{color_value18};"></div><div class="color-hex">#{color_value18}</div></div>{/block:color_value18}
+              {block:color_value19}<div class="template-color"><div class="color-name">{color_name19}</div><div class="color" style="background-color: #{color_value19};"></div><div class="color-hex">#{color_value19}</div></div>{/block:color_value19}
             </div>
           </div>
           {/block:hascolors}
@@ -410,13 +411,6 @@
           </div>
           {/block:c_text_value1}
         </div>
-
-
-
-
-
-
-
 
         <!---------------------------------------->
         <!-- Body details -->
@@ -776,15 +770,15 @@
           </div>
 
           <!-- a little bit of fancy footwork on the six attributes-->
-          <div id="rpg-stats">
+          <div id="rpg-stats" class="flex row nowrap evenly">
 
             {block:strength}
             <div class="rpg-stat">
               <div class="item-left">
-                Strength
+                <p>STR</p>
               </div>
               <div class="item-right">
-                {strength}
+                <p>{strength}</p>
               </div>
             </div>
             {/block:strength}
@@ -792,10 +786,10 @@
             {block:intelligence}
             <div class="rpg-stat">
               <div class="item-left">
-                Intelligence
+                <p>INT</p>
               </div>
               <div class="item-right">
-                {intelligence}
+                <p>{intelligence}</p>
               </div>
             </div>
             {/block:intelligence}
@@ -803,10 +797,10 @@
             {block:wisdom}
             <div class="rpg-stat">
               <div class="item-left">
-                Wisdom
+                <p>WIS</p>
               </div>
               <div class="item-right">
-                {wisdom}
+                <p>{wisdom}</p>
               </div>
             </div>
             {/block:wisdom}
@@ -814,10 +808,10 @@
             {block:dexterity}
             <div class="rpg-stat">
               <div class="item-left">
-                Dexterity
+                <p>DEX</p>
               </div>
               <div class="item-right">
-                {dexterity}
+                <p>{dexterity}</p>
               </div>
             </div>
             {/block:dexterity}
@@ -825,10 +819,10 @@
             {block:constitution}
             <div class="rpg-stat">
               <div class="item-left">
-                Constitution
+                <p>CON</p>
               </div>
               <div class="item-right">
-                {constitution}
+                <p>{constitution}</p>
               </div>
             </div>
             {/block:constitution}
@@ -836,10 +830,10 @@
             {block:charisma}
             <div class="rpg-stat">
               <div class="item-left">
-                Charisma
+                <p>CHA</p>
               </div>
               <div class="item-right">
-                {charisma}
+                <p>{charisma}</p>
               </div>
             </div>
             {/block:charisma}
@@ -952,7 +946,7 @@
       <!-- gallery is its own island -->
       {block:post_url0}
       <div id="gallery" class="island">
-        <div class="subtitle flex row nowrap">
+        <div class="subtitle flex row nowrap between">
           Gallery
           <div class="item-left pr-button">
             <a href="{gallery_url}">
@@ -961,7 +955,7 @@
           </div>
         </div>
 
-        <div id="gallery-bar" class="flex row">
+        <div id="gallery-bar" class="content flex row nowrap middle between">
 
           <div class="pr-button">
             <a href="{page_prev}" class="disabled">
@@ -981,10 +975,6 @@
             {block:post_thumb_url3}<div class="thumb"><a href="{post_url3}"><img src="{post_thumb_url3}"></a></div>{/block:post_thumb_url3}
             {block:post_thumb_url4}<div class="thumb"><a href="{post_url4}"><img src="{post_thumb_url4}"></a></div>{/block:post_thumb_url4}
             {block:post_thumb_url5}<div class="thumb"><a href="{post_url5}"><img src="{post_thumb_url5}"></a></div>{/block:post_thumb_url5}
-            {block:post_thumb_url6}<div class="thumb"><a href="{post_url6}"><img src="{post_thumb_url6}"></a></div>{/block:post_thumb_url6}
-            {block:post_thumb_url7}<div class="thumb"><a href="{post_url7}"><img src="{post_thumb_url7}"></a></div>{/block:post_thumb_url7}
-            {block:post_thumb_url8}<div class="thumb"><a href="{post_url8}"><img src="{post_thumb_url8}"></a></div>{/block:post_thumb_url8}
-            {block:post_thumb_url9}<div class="thumb"><a href="{post_url9}"><img src="{post_thumb_url9}"></a></div>{/block:post_thumb_url9}
           </div>
 
           <div class="pr-button">

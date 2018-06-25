@@ -10,5 +10,3 @@ This theme uses your character's first color (in the Colors tab) as a highlight 
 
 ## ramune
 A calm and bubbling theme reminiscent of glass marbles and Japanese soda.
-
-This theme uses your character's first color (in the Colors tab) as a highlight color. Pick something pastel!
