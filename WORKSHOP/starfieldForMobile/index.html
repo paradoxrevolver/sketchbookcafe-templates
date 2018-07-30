@@ -1,958 +1,984 @@
 <link href="https://fonts.googleapis.com/css?family=Rubik|Sanchez" rel="stylesheet">
 
-<!-- the main body... of everything! -->
-<!-- i also use style here to save variables from the html straight into the css! that's radical. -->
+<!-- HTML CLASS METHODOLOGY
+  FOR div (large scope, like page covers or dividers):
+    cover: spreads across the entire page or almost the entire page
+    background: contains things behind page content
+    page: contains things that holds page content
+    
+    column: contains a stack of content from the top to the bottom of the page
+  
+  FOR div (mid scope, like islands):
+    island: contains a bunch of blocks of content, usually has a background color
+  
+  FOR div (small scope, like content):
+    content: contains content that deserves to be separate from several other blocks of content in an island
+  
+  FOR a:
+  image-link: if there's an img in here, then this link is an image-link.
+  
+  -->
+
+
+<!-- the main body of everything -->
+<!-- the inline style here is to pull the user's first color into the css as a highlight color -->
 <div id="pr" style="--highlight-color: #{color_value0}">
-
-  <div id="star-bg-dim"></div>
-  <div id="star-bg-small"></div>
-  <div id="star-bg-big"></div>
-
-  <!-- ################################### -->
-  <!-- left column -->
-  <div class="column" id="left-col">
-    <!-- The character's portrait, including name, title, and quote -->
-    <div id="portrait" class="island left-island">
-
-      {block:portrait_url}
-      <div id="portrait-avatar">
-        <a href="{character_url}">
-          <img src="{portrait_url}">
-        </a>
-      </div>
-      {/block:portrait_url}
-
-      {block:name}
-      <div id="portrait-name">
-        <a href="{character_url}">
-          {name}
-        </a>
-      </div>
-      {/block:name}
-
-      {block:title}
-      <div id="portrait-title">
-        <a href="{character_url}">
-          {title}
-        </a>
-      </div>
-      {/block:title}
-
-      {block:quote}
-      <div id="portrait-quote">
-        <p>
-          "{quote}"
-        </p>
-      </div>
-      {/block:quote}
-
-    </div>
-
-    <!-- The creator's signature, to show who created this character-->
-    <div id="signature" class="island left-island">
-      <div class="subtitle">
-        Owner
-      </div>
-      <div id="signature-owner">
-        <a id="signature-owner-avatar" href="{owner_url}">
-          <img src="{owner_avatar}">
-        </a>
-        <div id="signature-owner-name">
-          {owner_username}
-        </div>
-      </div>
-      {block:character_signature}
-      <div id="signature-signature">
-        {character_signature}
-      </div>
-      {/block:character_signature}
-    </div>
-
-    <!-- A single featured image for this character-->
-    {block:featured_image_url}
-    <div id="featured-image" class="island left-island">
-      <div class="subtitle">
-        Featured Image
-      </div>
-      <div id="featured-image-image">
-        <img src="{featured_image_url}">
-      </div>
-    </div>
-    {/block:featured_image_url}
-
-    <!-- The tags on this character -->
-    {block:hastags}
-    <div id="tags" class="island left-island">
-      <div class="subtitle">
-        Tags
-      </div>
-      <div id="tags-tags">
-        {block:tag0}<div class="pr-button template-tag">{tag0}</div>{/block:tag0}
-        {block:tag1}<div class="pr-button template-tag">{tag1}</div>{/block:tag1}
-        {block:tag2}<div class="pr-button template-tag">{tag2}</div>{/block:tag2}
-        {block:tag3}<div class="pr-button template-tag">{tag3}</div>{/block:tag3}
-        {block:tag4}<div class="pr-button template-tag">{tag4}</div>{/block:tag4}
-        {block:tag5}<div class="pr-button template-tag">{tag5}</div>{/block:tag5}
-        {block:tag6}<div class="pr-button template-tag">{tag6}</div>{/block:tag6}
-        {block:tag7}<div class="pr-button template-tag">{tag7}</div>{/block:tag7}
-        {block:tag8}<div class="pr-button template-tag">{tag8}</div>{/block:tag8}
-        {block:tag9}<div class="pr-button template-tag">{tag9}</div>{/block:tag9}
-      </div>
-    </div>
-    {/block:hastags}
-
-    <!-- This character's color palette -->
-    {block:hascolors}
-    <div id="colors" class="island left-island">
-      <div class="subtitle">
-        Palette
-      </div>
-      <div id="colors-palette">
-        {block:color_value0} <div class="template-color"><div class="color-name">{color_name0} </div><div class="color" style="background-color: #{color_value0} ;"><div class="color-hex">#{color_value0} </div></div></div>{/block:color_value0}
-        {block:color_value1} <div class="template-color"><div class="color-name">{color_name1} </div><div class="color" style="background-color: #{color_value1} ;"><div class="color-hex">#{color_value1} </div></div></div>{/block:color_value1}
-        {block:color_value2} <div class="template-color"><div class="color-name">{color_name2} </div><div class="color" style="background-color: #{color_value2} ;"><div class="color-hex">#{color_value2} </div></div></div>{/block:color_value2}
-        {block:color_value3} <div class="template-color"><div class="color-name">{color_name3} </div><div class="color" style="background-color: #{color_value3} ;"><div class="color-hex">#{color_value3} </div></div></div>{/block:color_value3}
-        {block:color_value4} <div class="template-color"><div class="color-name">{color_name4} </div><div class="color" style="background-color: #{color_value4} ;"><div class="color-hex">#{color_value4} </div></div></div>{/block:color_value4}
-        {block:color_value5} <div class="template-color"><div class="color-name">{color_name5} </div><div class="color" style="background-color: #{color_value5} ;"><div class="color-hex">#{color_value5} </div></div></div>{/block:color_value5}
-        {block:color_value6} <div class="template-color"><div class="color-name">{color_name6} </div><div class="color" style="background-color: #{color_value6} ;"><div class="color-hex">#{color_value6} </div></div></div>{/block:color_value6}
-        {block:color_value7} <div class="template-color"><div class="color-name">{color_name7} </div><div class="color" style="background-color: #{color_value7} ;"><div class="color-hex">#{color_value7} </div></div></div>{/block:color_value7}
-        {block:color_value8} <div class="template-color"><div class="color-name">{color_name8} </div><div class="color" style="background-color: #{color_value8} ;"><div class="color-hex">#{color_value8} </div></div></div>{/block:color_value8}
-        {block:color_value9} <div class="template-color"><div class="color-name">{color_name9} </div><div class="color" style="background-color: #{color_value9} ;"><div class="color-hex">#{color_value9} </div></div></div>{/block:color_value9}
-        {block:color_value10}<div class="template-color"><div class="color-name">{color_name10}</div><div class="color" style="background-color: #{color_value10};"><div class="color-hex">#{color_value10}</div></div></div>{/block:color_value10}
-        {block:color_value11}<div class="template-color"><div class="color-name">{color_name11}</div><div class="color" style="background-color: #{color_value11};"><div class="color-hex">#{color_value11}</div></div></div>{/block:color_value11}
-        {block:color_value12}<div class="template-color"><div class="color-name">{color_name12}</div><div class="color" style="background-color: #{color_value12};"><div class="color-hex">#{color_value12}</div></div></div>{/block:color_value12}
-        {block:color_value13}<div class="template-color"><div class="color-name">{color_name13}</div><div class="color" style="background-color: #{color_value13};"><div class="color-hex">#{color_value13}</div></div></div>{/block:color_value13}
-        {block:color_value14}<div class="template-color"><div class="color-name">{color_name14}</div><div class="color" style="background-color: #{color_value14};"><div class="color-hex">#{color_value14}</div></div></div>{/block:color_value14}
-        {block:color_value15}<div class="template-color"><div class="color-name">{color_name15}</div><div class="color" style="background-color: #{color_value15};"><div class="color-hex">#{color_value15}</div></div></div>{/block:color_value15}
-        {block:color_value16}<div class="template-color"><div class="color-name">{color_name16}</div><div class="color" style="background-color: #{color_value16};"><div class="color-hex">#{color_value16}</div></div></div>{/block:color_value16}
-        {block:color_value17}<div class="template-color"><div class="color-name">{color_name17}</div><div class="color" style="background-color: #{color_value17};"><div class="color-hex">#{color_value17}</div></div></div>{/block:color_value17}
-        {block:color_value18}<div class="template-color"><div class="color-name">{color_name18}</div><div class="color" style="background-color: #{color_value18};"><div class="color-hex">#{color_value18}</div></div></div>{/block:color_value18}
-        {block:color_value19}<div class="template-color"><div class="color-name">{color_name19}</div><div class="color" style="background-color: #{color_value19};"><div class="color-hex">#{color_value19}</div></div></div>{/block:color_value19}
-      </div>
-    </div>
-    {/block:hascolors}
-
+  
+  <!-- background covers the entire page -->
+  <div class="background cover">
+    <div class="star-bg dim"></div>
+    <div class="star-bg small"></div>
+    <div class="star-bg big"></div>
   </div>
+  
+  <!-- page content covers the entire page -->
+  <div class="page cover">
+    
+    <div class="left column">
 
-  <!-- ################################### -->
-  <!-- right column -->
-  <div class="column" id="right-col">
+      <!-- The character's portrait, including name, title, and quote -->
+      <div id="portrait" class="left island">
 
-
-
-    <!---------------------------------------->
-    <!-- Character Sheet -->
-    {block:character_sheet_url}
-    <div id="character-sheet" class="island right-island">
-      <div class="subtitle">
-        Character Sheet
-      </div>
-      <div id="character-sheet-image">
-        <img src="{character_sheet_url}">
-      </div>
-    </div>
-    {/block:character_sheet_url}
-
-
-    <!---------------------------------------->
-    <!-- Description -->
-    {block:description}
-    <div id="description" class="details island right-island">
-      <div class="subtitle">
-        Description
-      </div>
-
-      <div id="description-text">
-        {description}
-      </div>
-    </div>
-    {/block:description}
-
-    <!---------------------------------------->
-    <!-- Gallery -->
-    {block:post_url0}
-    <div id="gallery" class="island right-island">
-      <div class="subtitle">
-        Gallery
-        <div class="item-left pr-button">
-          <a href="{gallery_url}">
-            See Gallery ({posts_total})
+        {block:portrait_url}
+        <div class="avatar">
+          <a class="image-link" href="{character_url}">
+            <img src="{portrait_url}">
           </a>
         </div>
-      </div>
+        {/block:portrait_url}
 
-      <div id="gallery-bar">
-
-        <div class="pr-button">
-          <a href="{page_prev}" class="disabled">
-            «
+        {block:name}
+        <div class="name">
+          <a href="{character_url}">
+            {name}
           </a>
-          {block:page_prev}
-          <a href="{page_prev}" class="enabled">
-            «
+        </div>
+        {/block:name}
+
+        {block:title}
+        <div class="title">
+          <a href="{character_url}">
+            {title}
           </a>
-          {/block:page_prev}
         </div>
+        {/block:title}
 
-        <div id="gallery-thumbs">
-          {block:post_thumb_url0}<div class="thumb"><a href="{post_url0}"><img src="{post_thumb_url0}"></a></div>{/block:post_thumb_url0}
-          {block:post_thumb_url1}<div class="thumb"><a href="{post_url1}"><img src="{post_thumb_url1}"></a></div>{/block:post_thumb_url1}
-          {block:post_thumb_url2}<div class="thumb"><a href="{post_url2}"><img src="{post_thumb_url2}"></a></div>{/block:post_thumb_url2}
-          {block:post_thumb_url3}<div class="thumb"><a href="{post_url3}"><img src="{post_thumb_url3}"></a></div>{/block:post_thumb_url3}
-          {block:post_thumb_url4}<div class="thumb"><a href="{post_url4}"><img src="{post_thumb_url4}"></a></div>{/block:post_thumb_url4}
-          {block:post_thumb_url5}<div class="thumb"><a href="{post_url5}"><img src="{post_thumb_url5}"></a></div>{/block:post_thumb_url5}
-          {block:post_thumb_url6}<div class="thumb"><a href="{post_url6}"><img src="{post_thumb_url6}"></a></div>{/block:post_thumb_url6}
-          {block:post_thumb_url7}<div class="thumb"><a href="{post_url7}"><img src="{post_thumb_url7}"></a></div>{/block:post_thumb_url7}
-          {block:post_thumb_url8}<div class="thumb"><a href="{post_url8}"><img src="{post_thumb_url8}"></a></div>{/block:post_thumb_url8}
-          {block:post_thumb_url9}<div class="thumb"><a href="{post_url9}"><img src="{post_thumb_url9}"></a></div>{/block:post_thumb_url9}
+        {block:quote}
+        <div class="quote">
+          <em>
+            "{quote}"
+          </em>
         </div>
-
-        <div class="pr-button">
-          <a href="{page_next}" class="disabled">
-            »
-          </a>
-          {block:page_next}
-          <a href="{page_next}" class="enabled">
-            »
-          </a>
-          {/block:page_next}
-        </div>
+        {/block:quote}
 
       </div>
+
+      <!-- The creator's signature, to show who created this character-->
+      <div id="signature" class="left island">
+        <div class="subtitle">
+          Owner
+        </div>
+        
+        <div class="owner">
+          <div class="avatar">
+            <a class="image-link" href="{owner_url}">
+              <img src="{owner_avatar}">
+            </a>
+          </div>
+          <div class="name">
+            <a href="{owner_url}">
+              {owner_username}
+            </a>
+          </div>
+        </div>
+        
+        {block:character_signature}
+        <div class="signature">
+          {character_signature}
+        </div>
+        {/block:character_signature}
+      </div>
+
+      <!-- A single featured image for this character-->
+      {block:featured_image_url}
+      <div id="featured-image" class="left island">
+        <div class="subtitle">
+          Featured Image
+        </div>
+        <div class="image">
+          <img src="{featured_image_url}">
+        </div>
+      </div>
+      {/block:featured_image_url}
+
+      <!-- The tags on this character -->
+      {block:hastags}
+      <div id="tags" class="left island">
+        <div class="subtitle">
+          Tags
+        </div>
+        <div class="list">
+          {block:tag0}<div class="tag button">{tag0}</div>{/block:tag0}
+          {block:tag1}<div class="tag button">{tag1}</div>{/block:tag1}
+          {block:tag2}<div class="tag button">{tag2}</div>{/block:tag2}
+          {block:tag3}<div class="tag button">{tag3}</div>{/block:tag3}
+          {block:tag4}<div class="tag button">{tag4}</div>{/block:tag4}
+          {block:tag5}<div class="tag button">{tag5}</div>{/block:tag5}
+          {block:tag6}<div class="tag button">{tag6}</div>{/block:tag6}
+          {block:tag7}<div class="tag button">{tag7}</div>{/block:tag7}
+          {block:tag8}<div class="tag button">{tag8}</div>{/block:tag8}
+          {block:tag9}<div class="tag button">{tag9}</div>{/block:tag9}
+        </div>
+      </div>
+      {/block:hastags}
+
+      <!-- This character's color palette -->
+      {block:hascolors}
+      <div id="colors" class="left island">
+        <div class="subtitle">
+          Palette
+        </div>
+        <div class="list">
+          {block:color_value0} <div class="color"><div class="name">{color_name0} </div><div class="hex" style="background-color: #{color_value0} ;"><div class="code">#{color_value0} </div></div></div>{/block:color_value0}
+          {block:color_value1} <div class="color"><div class="name">{color_name1} </div><div class="hex" style="background-color: #{color_value1} ;"><div class="code">#{color_value1} </div></div></div>{/block:color_value1}
+          {block:color_value2} <div class="color"><div class="name">{color_name2} </div><div class="hex" style="background-color: #{color_value2} ;"><div class="code">#{color_value2} </div></div></div>{/block:color_value2}
+          {block:color_value3} <div class="color"><div class="name">{color_name3} </div><div class="hex" style="background-color: #{color_value3} ;"><div class="code">#{color_value3} </div></div></div>{/block:color_value3}
+          {block:color_value4} <div class="color"><div class="name">{color_name4} </div><div class="hex" style="background-color: #{color_value4} ;"><div class="code">#{color_value4} </div></div></div>{/block:color_value4}
+          {block:color_value5} <div class="color"><div class="name">{color_name5} </div><div class="hex" style="background-color: #{color_value5} ;"><div class="code">#{color_value5} </div></div></div>{/block:color_value5}
+          {block:color_value6} <div class="color"><div class="name">{color_name6} </div><div class="hex" style="background-color: #{color_value6} ;"><div class="code">#{color_value6} </div></div></div>{/block:color_value6}
+          {block:color_value7} <div class="color"><div class="name">{color_name7} </div><div class="hex" style="background-color: #{color_value7} ;"><div class="code">#{color_value7} </div></div></div>{/block:color_value7}
+          {block:color_value8} <div class="color"><div class="name">{color_name8} </div><div class="hex" style="background-color: #{color_value8} ;"><div class="code">#{color_value8} </div></div></div>{/block:color_value8}
+          {block:color_value9} <div class="color"><div class="name">{color_name9} </div><div class="hex" style="background-color: #{color_value9} ;"><div class="code">#{color_value9} </div></div></div>{/block:color_value9}
+          {block:color_value10}<div class="color"><div class="name">{color_name10}</div><div class="hex" style="background-color: #{color_value10};"><div class="code">#{color_value10}</div></div></div>{/block:color_value10}
+          {block:color_value11}<div class="color"><div class="name">{color_name11}</div><div class="hex" style="background-color: #{color_value11};"><div class="code">#{color_value11}</div></div></div>{/block:color_value11}
+          {block:color_value12}<div class="color"><div class="name">{color_name12}</div><div class="hex" style="background-color: #{color_value12};"><div class="code">#{color_value12}</div></div></div>{/block:color_value12}
+          {block:color_value13}<div class="color"><div class="name">{color_name13}</div><div class="hex" style="background-color: #{color_value13};"><div class="code">#{color_value13}</div></div></div>{/block:color_value13}
+          {block:color_value14}<div class="color"><div class="name">{color_name14}</div><div class="hex" style="background-color: #{color_value14};"><div class="code">#{color_value14}</div></div></div>{/block:color_value14}
+          {block:color_value15}<div class="color"><div class="name">{color_name15}</div><div class="hex" style="background-color: #{color_value15};"><div class="code">#{color_value15}</div></div></div>{/block:color_value15}
+          {block:color_value16}<div class="color"><div class="name">{color_name16}</div><div class="hex" style="background-color: #{color_value16};"><div class="code">#{color_value16}</div></div></div>{/block:color_value16}
+          {block:color_value17}<div class="color"><div class="name">{color_name17}</div><div class="hex" style="background-color: #{color_value17};"><div class="code">#{color_value17}</div></div></div>{/block:color_value17}
+          {block:color_value18}<div class="color"><div class="name">{color_name18}</div><div class="hex" style="background-color: #{color_value18};"><div class="code">#{color_value18}</div></div></div>{/block:color_value18}
+          {block:color_value19}<div class="color"><div class="name">{color_name19}</div><div class="hex" style="background-color: #{color_value19};"><div class="code">#{color_value19}</div></div></div>{/block:color_value19}
+        </div>
+      </div>
+      {/block:hascolors}
+
     </div>
-    {/block:post_url0}
-
-
-    <!---------------------------------------->
-    <!-- Character details -->
-    <div id="character" class="details island right-island">
-      <div class="subtitle">
-        Character
-      </div>
-
-      {block:age}
-      <div class="item">
-        <div class="item-left">
-          Age:
+    
+    <div class="right column">
+      <!---------------------------------------->
+      <!-- Character Sheet -->
+      {block:character_sheet_url}
+      <div id="character-sheet" class="right island">
+        <div class="subtitle">
+          Character Sheet
         </div>
-        <div class="item-right">
-          {age}
+        <div class="image">
+          <img src="{character_sheet_url}">
         </div>
       </div>
-      {/block:age}
+      {/block:character_sheet_url}
 
-      {block:species}
-      <div class="item">
-        <div class="item-left">
-          Species:
+      <!---------------------------------------->
+      <!-- Description -->
+      {block:description}
+      <div id="description" class="right island details">
+        <div class="subtitle">
+          Description
         </div>
-        <div class="item-right">
-          {species}
+
+        <div class="text">
+          {description}
         </div>
       </div>
-      {/block:species}
+      {/block:description}
 
-      {block:height}
-      <div class="item">
-        <div class="item-left">
-          Height:
+      <!---------------------------------------->
+      <!-- Gallery -->
+      {block:post_url0}
+      <div id="gallery" class="right island">
+        <div class="subtitle">
+          Gallery
+          <div class="button">
+            <a href="{gallery_url}">
+              See Gallery ({posts_total})
+            </a>
+          </div>
         </div>
-        <div class="item-right">
-          {height}
+
+        <div class="bar">
+          <div class="button">
+            <a href="{page_prev}" class="disabled">
+              «
+            </a>
+            {block:page_prev}
+            <a href="{page_prev}" class="enabled">
+              «
+            </a>
+            {/block:page_prev}
+          </div>
+
+          <div class="thumbs">
+            {block:post_thumb_url0}<div class="thumb"><a href="{post_url0}"><img src="{post_thumb_url0}"></a></div>{/block:post_thumb_url0}
+            {block:post_thumb_url1}<div class="thumb"><a href="{post_url1}"><img src="{post_thumb_url1}"></a></div>{/block:post_thumb_url1}
+            {block:post_thumb_url2}<div class="thumb"><a href="{post_url2}"><img src="{post_thumb_url2}"></a></div>{/block:post_thumb_url2}
+            {block:post_thumb_url3}<div class="thumb"><a href="{post_url3}"><img src="{post_thumb_url3}"></a></div>{/block:post_thumb_url3}
+            {block:post_thumb_url4}<div class="thumb"><a href="{post_url4}"><img src="{post_thumb_url4}"></a></div>{/block:post_thumb_url4}
+            {block:post_thumb_url5}<div class="thumb"><a href="{post_url5}"><img src="{post_thumb_url5}"></a></div>{/block:post_thumb_url5}
+            {block:post_thumb_url6}<div class="thumb"><a href="{post_url6}"><img src="{post_thumb_url6}"></a></div>{/block:post_thumb_url6}
+            {block:post_thumb_url7}<div class="thumb"><a href="{post_url7}"><img src="{post_thumb_url7}"></a></div>{/block:post_thumb_url7}
+            {block:post_thumb_url8}<div class="thumb"><a href="{post_url8}"><img src="{post_thumb_url8}"></a></div>{/block:post_thumb_url8}
+            {block:post_thumb_url9}<div class="thumb"><a href="{post_url9}"><img src="{post_thumb_url9}"></a></div>{/block:post_thumb_url9}
+          </div>
+
+          <div class="button">
+            <a href="{page_next}" class="disabled">
+              »
+            </a>
+            {block:page_next}
+            <a href="{page_next}" class="enabled">
+              »
+            </a>
+            {/block:page_next}
+          </div>
+
         </div>
       </div>
-      {/block:height}
+      {/block:post_url0}
 
-      {block:weight}
-      <div class="item">
-        <div class="item-left">
-          Weight:
-        </div>
-        <div class="item-right">
-          {weight}
-        </div>
-      </div>
-      {/block:weight}
 
-      {block:bodytype}
-      <div class="item">
-        <div class="item-left">
-          Body Type:
+      <!---------------------------------------->
+      <!-- Character details -->
+      <div id="character" class="right island details">
+        <div class="subtitle">
+          Character
         </div>
-        <div class="item-right">
-          {bodytype}
-        </div>
-      </div>
-      {/block:bodytype}
 
-      {block:sexuality}
-      <div class="item">
-        <div class="item-left">
-          Sexuality:
+        {block:age}
+        <div class="item">
+          <div class="left">
+            Age:
+          </div>
+          <div class="right">
+            {age}
+          </div>
         </div>
-        <div class="item-right">
-          {sexuality}
-        </div>
-      </div>
-      {/block:sexuality}
+        {/block:age}
 
-      {block:religion}
-      <div class="item">
-        <div class="item-left">
-          Religion:
+        {block:species}
+        <div class="item">
+          <div class="left">
+            Species:
+          </div>
+          <div class="right">
+            {species}
+          </div>
         </div>
-        <div class="item-right">
-          {religion}
-        </div>
-      </div>
-      {/block:religion}
+        {/block:species}
 
-      {block:occupation}
-      <div class="item">
-        <div class="item-left">
-          Occupation:
+        {block:height}
+        <div class="item">
+          <div class="left">
+            Height:
+          </div>
+          <div class="right">
+            {height}
+          </div>
         </div>
-        <div class="item-right">
-          {occupation}
-        </div>
-      </div>
-      {/block:occupation}
+        {/block:height}
 
-      {block:past_occupation}
-      <div class="item">
-        <div class="item-left">
-          Past Occupation:
+        {block:weight}
+        <div class="item">
+          <div class="left">
+            Weight:
+          </div>
+          <div class="right">
+            {weight}
+          </div>
         </div>
-        <div class="item-right">
-          {past_occupation}
-        </div>
-      </div>
-      {/block:past_occupation}
+        {/block:weight}
 
-      {block:c_field_value0}
-      <div class="item">
-        <div class="item-left">
-          {c_field_name0}:
+        {block:bodytype}
+        <div class="item">
+          <div class="left">
+            Body Type:
+          </div>
+          <div class="right">
+            {bodytype}
+          </div>
         </div>
-        <div class="item-right">
-          {c_field_value0}
-        </div>
-      </div>
-      {/block:c_field_value0}
+        {/block:bodytype}
 
-      {block:c_field_value1}
-      <div class="item">
-        <div class="item-left">
-          {c_field_name1}:
+        {block:sexuality}
+        <div class="item">
+          <div class="left">
+            Sexuality:
+          </div>
+          <div class="right">
+            {sexuality}
+          </div>
         </div>
-        <div class="item-right">
-          {c_field_value1}
-        </div>
-      </div>
-      {/block:c_field_value1}
+        {/block:sexuality}
 
-      {block:skills}
-      <div class="item">
-        <div class="item-left">
-          Skills:
+        {block:religion}
+        <div class="item">
+          <div class="left">
+            Religion:
+          </div>
+          <div class="right">
+            {religion}
+          </div>
         </div>
-        <div class="item-right">
-          {skills}
-        </div>
-      </div>
-      {/block:skills}
+        {/block:religion}
 
-      {block:abilities}
-      <div class="item">
-        <div class="item-left">
-          Abilities:
+        {block:occupation}
+        <div class="item">
+          <div class="left">
+            Occupation:
+          </div>
+          <div class="right">
+            {occupation}
+          </div>
         </div>
-        <div class="item-right">
-          {abilities}
-        </div>
-      </div>
-      {/block:abilities}
+        {/block:occupation}
 
-      {block:talents}
-      <div class="item">
-        <div class="item-left">
-          Talents:
+        {block:past_occupation}
+        <div class="item">
+          <div class="left">
+            Past Occupation:
+          </div>
+          <div class="right">
+            {past_occupation}
+          </div>
         </div>
-        <div class="item-right">
-          {talents}
-        </div>
-      </div>
-      {/block:talents}
+        {/block:past_occupation}
 
-      {block:interests}
-      <div class="item">
-        <div class="item-left">
-          Interests:
+        {block:c_field_value0}
+        <div class="item">
+          <div class="left">
+            {c_field_name0}:
+          </div>
+          <div class="right">
+            {c_field_value0}
+          </div>
         </div>
-        <div class="item-right">
-          {interests}
-        </div>
-      </div>
-      {/block:interests}
+        {/block:c_field_value0}
 
-      {block:c_text_value0}
-      <div class="item">
-        <div class="item-left">
-          {c_text_name0}:
+        {block:c_field_value1}
+        <div class="item">
+          <div class="left">
+            {c_field_name1}:
+          </div>
+          <div class="right">
+            {c_field_value1}
+          </div>
         </div>
-        <div class="item-right">
-          {c_text_value0}
-        </div>
-      </div>
-      {/block:c_text_value0}
+        {/block:c_field_value1}
 
-      {block:c_text_value1}
-      <div class="item">
-        <div class="item-left">
-          {c_text_name1}:
+        {block:skills}
+        <div class="item">
+          <div class="left">
+            Skills:
+          </div>
+          <div class="right">
+            {skills}
+          </div>
         </div>
-        <div class="item-right">
-          {c_text_value1}
+        {/block:skills}
+
+        {block:abilities}
+        <div class="item">
+          <div class="left">
+            Abilities:
+          </div>
+          <div class="right">
+            {abilities}
+          </div>
         </div>
+        {/block:abilities}
+
+        {block:talents}
+        <div class="item">
+          <div class="left">
+            Talents:
+          </div>
+          <div class="right">
+            {talents}
+          </div>
+        </div>
+        {/block:talents}
+
+        {block:interests}
+        <div class="item">
+          <div class="left">
+            Interests:
+          </div>
+          <div class="right">
+            {interests}
+          </div>
+        </div>
+        {/block:interests}
+
+        {block:c_text_value0}
+        <div class="item">
+          <div class="left">
+            {c_text_name0}:
+          </div>
+          <div class="right">
+            {c_text_value0}
+          </div>
+        </div>
+        {/block:c_text_value0}
+
+        {block:c_text_value1}
+        <div class="item">
+          <div class="left">
+            {c_text_name1}:
+          </div>
+          <div class="right">
+            {c_text_value1}
+          </div>
+        </div>
+        {/block:c_text_value1}
       </div>
-      {/block:c_text_value1}
+
+
+
+
+
+
+
+
+      <!---------------------------------------->
+      <!-- Body details -->
+      {block:hasbody}
+      <div id="body" class="right island details">
+        <div class="subtitle">
+          Body
+        </div>
+
+        {block:scent}
+        <div class="item">
+          <div class="left">
+            Scent:
+          </div>
+          <div class="right">
+            {scent}
+          </div>
+        </div>
+        {/block:scent}
+
+        {block:body_texture}
+        <div class="item">
+          <div class="left">
+            Body Texture:
+          </div>
+          <div class="right">
+            {body_texture}
+          </div>
+        </div>
+        {/block:body_texture}
+
+        {block:eye_color}
+        <div class="item">
+          <div class="left">
+            Eye Color:
+          </div>
+          <div class="right">
+            {eye_color}
+          </div>
+        </div>
+        {/block:eye_color}
+
+        {block:hair_style}
+        <div class="item">
+          <div class="left">
+            Hair Style:
+          </div>
+          <div class="right">
+            {hair_style}
+          </div>
+        </div>
+        {/block:hair_style}
+
+        {block:body_chest}
+        <div class="item">
+          <div class="left">
+            Chest:
+          </div>
+          <div class="right">
+            {body_chest}
+          </div>
+        </div>
+        {/block:body_chest}
+
+        {block:body_groin}
+        <div class="item">
+          <div class="left">
+            Groin:
+          </div>
+          <div class="right">
+            {body_groin}
+          </div>
+        </div>
+        {/block:body_groin}
+
+        {block:body_extra}
+        <div class="item">
+          <div class="left">
+            Extra:
+          </div>
+          <div class="right">
+            {body_extra}
+          </div>
+        </div>
+        {/block:body_extra}
+      </div>
+      {/block:hasbody}
+
+      <!---------------------------------------->
+      <!-- Personality details -->
+      {block:haspersonality}
+      <div id="personality" class="right island details">
+        <div class="subtitle">
+          Personality
+        </div>
+
+        {block:personality_type}
+        <div class="item">
+          <div class="left">
+            Personality Type:
+          </div>
+          <div class="right">
+            {personality_type}
+          </div>
+        </div>
+        {/block:personality_type}
+
+        {block:speaking_style}
+        <div class="item">
+          <div class="left">
+            Speaking Style:
+          </div>
+          <div class="right">
+            {speaking_style}
+          </div>
+        </div>
+        {/block:speaking_style}
+
+        {block:action_tags}
+        <div class="item">
+          <div class="left">
+            Action Tags:
+          </div>
+          <div class="right">
+            {action_tags}
+          </div>
+        </div>
+        {/block:action_tags}
+
+        {block:verbal_tags}
+        <div class="item">
+          <div class="left">
+            Verbal Tags:
+          </div>
+          <div class="right">
+            {verbal_tags}
+          </div>
+        </div>
+        {/block:verbal_tags}
+
+        {block:prejudices}
+        <div class="item">
+          <div class="left">
+            Prejudices:
+          </div>
+          <div class="right">
+            {prejudices}
+          </div>
+        </div>
+        {/block:prejudices}
+
+        {block:sense_of_humor}
+        <div class="item">
+          <div class="left">
+            Sense of Humor:
+          </div>
+          <div class="right">
+            {sense_of_humor}
+          </div>
+        </div>
+        {/block:sense_of_humor}
+
+        {block:philosophy}
+        <div class="item">
+          <div class="left">
+            Philosophy:
+          </div>
+          <div class="right">
+            {philosophy}
+          </div>
+        </div>
+        {/block:philosophy}
+
+        {block:preferred_clothing}
+        <div class="item">
+          <div class="left">
+            Clothing:
+          </div>
+          <div class="right">
+            {preferred_clothing}
+          </div>
+        </div>
+        {/block:preferred_clothing}
+
+        {block:positive_traits}
+        <div class="item">
+          <div class="left">
+            Admirable Traits:
+          </div>
+          <div class="right">
+            {positive_traits}
+          </div>
+        </div>
+        {/block:positive_traits}
+
+        {block:negative_traits}
+        <div class="item">
+          <div class="left">
+            Negative Traits:
+          </div>
+          <div class="right">
+            {negative_traits}
+          </div>
+        </div>
+        {/block:negative_traits}
+
+        {block:quirks}
+        <div class="item">
+          <div class="left">
+            Quirks:
+          </div>
+          <div class="right">
+            {quirks}
+          </div>
+        </div>
+        {/block:quirks}
+
+        {block:special_items}
+        <div class="item">
+          <div class="left">
+            Special Items:
+          </div>
+          <div class="right">
+            {special_items}
+          </div>
+        </div>
+        {/block:special_items}
+
+        {block:bad_habits}
+        <div class="item">
+          <div class="left">
+            Bad Habits:
+          </div>
+          <div class="right">
+            {bad_habits}
+          </div>
+        </div>
+        {/block:bad_habits}
+
+        {block:pet_peeves}
+        <div class="item">
+          <div class="left">
+            Pet Peeves:
+          </div>
+          <div class="right">
+            {pet_peeves}
+          </div>
+        </div>
+        {/block:pet_peeves}
+      </div>
+      {/block:haspersonality}
+
+      <!---------------------------------------->
+      <!-- Lifestyle details -->
+      {block:haslifestyle}
+      <div id="lifestyle" class="right island details">
+        <div class="subtitle">
+          Lifestyle
+        </div>
+
+        {block:diet}
+        <div class="item">
+          <div class="left">
+            Diet:
+          </div>
+          <div class="right">
+            {diet}
+          </div>
+        </div>
+        {/block:diet}
+
+        {block:favorite_foods}
+        <div class="item">
+          <div class="left">
+            Favorite Food(s):
+          </div>
+          <div class="right">
+            {favorite_foods}
+          </div>
+        </div>
+        {/block:favorite_foods}
+
+        {block:favorite_books}
+        <div class="item">
+          <div class="left">
+            Favorite Book(s):
+          </div>
+          <div class="right">
+            {favorite_books}
+          </div>
+        </div>
+        {/block:favorite_books}
+
+        {block:favorite_colors}
+        <div class="item">
+          <div class="left">
+            Favorite Color(s):
+          </div>
+          <div class="right">
+            {favorite_colors}
+          </div>
+        </div>
+        {/block:favorite_colors}
+
+        {block:favorite_places}
+        <div class="item">
+          <div class="left">
+            Favorite Place(s):
+          </div>
+          <div class="right">
+            {favorite_places}
+          </div>
+        </div>
+        {/block:favorite_places}
+
+        {block:home_life}
+        <div class="item">
+          <div class="left">
+            Home Life:
+          </div>
+          <div class="right">
+            {home_life}
+          </div>
+        </div>
+        {/block:home_life}
+
+        {block:friends}
+        <div class="item">
+          <div class="left">
+            Friends:
+          </div>
+          <div class="right">
+            {friends}
+          </div>
+        </div>
+        {/block:friends}
+
+        {block:family}
+        <div class="item">
+          <div class="left">
+            Family:
+          </div>
+          <div class="right">
+            {family}
+          </div>
+        </div>
+        {/block:family}
+      </div>
+      {/block:haslifestyle}
+
+      <!---------------------------------------->
+      <!-- RPG details -->
+      {block:hasrpg}
+      <div id="rpg" class="right island details">
+        <div class="subtitle">
+          RPG
+        </div>
+
+        <!-- a little bit of fancy footwork on the six attributes-->
+        <div id="rpg-stats">
+
+          {block:strength}
+          <div class="rpg-stat">
+            <div class="left">
+              Strength
+            </div>
+            <div class="right">
+              {strength}
+            </div>
+          </div>
+          {/block:strength}
+
+          {block:intelligence}
+          <div class="rpg-stat">
+            <div class="left">
+              Intelligence
+            </div>
+            <div class="right">
+              {intelligence}
+            </div>
+          </div>
+          {/block:intelligence}
+
+          {block:wisdom}
+          <div class="rpg-stat">
+            <div class="left">
+              Wisdom
+            </div>
+            <div class="right">
+              {wisdom}
+            </div>
+          </div>
+          {/block:wisdom}
+
+          {block:dexterity}
+          <div class="rpg-stat">
+            <div class="left">
+              Dexterity
+            </div>
+            <div class="right">
+              {dexterity}
+            </div>
+          </div>
+          {/block:dexterity}
+
+          {block:constitution}
+          <div class="rpg-stat">
+            <div class="left">
+              Constitution
+            </div>
+            <div class="right">
+              {constitution}
+            </div>
+          </div>
+          {/block:constitution}
+
+          {block:charisma}
+          <div class="rpg-stat">
+            <div class="left">
+              Charisma
+            </div>
+            <div class="right">
+              {charisma}
+            </div>
+          </div>
+          {/block:charisma}
+
+        </div>
+
+        {block:rpg_class}
+        <div class="item">
+          <div class="left">
+            Class:
+          </div>
+          <div class="right">
+            {rpg_class}
+          </div>
+        </div>
+        {/block:rpg_class}
+
+        {block:armor_class}
+        <div class="item">
+          <div class="left">
+            Armor Class:
+          </div>
+          <div class="right">
+            {armor_class}
+          </div>
+        </div>
+        {/block:armor_class}
+
+        {block:initiative}
+        <div class="item">
+          <div class="left">
+            Initiative:
+          </div>
+          <div class="right">
+            {initiative}
+          </div>
+        </div>
+        {/block:initiative}
+
+        {block:speed}
+        <div class="item">
+          <div class="left">
+            Speed:
+          </div>
+          <div class="right">
+            {speed}
+          </div>
+        </div>
+        {/block:speed}
+
+        {block:health}
+        <div class="item">
+          <div class="left">
+            Health:
+          </div>
+          <div class="right">
+            {health}
+          </div>
+        </div>
+        {/block:health}
+
+        {block:magic}
+        <div class="item">
+          <div class="left">
+            Magic:
+          </div>
+          <div class="right">
+            {magic}
+          </div>
+        </div>
+        {/block:magic}
+
+        {block:alignment}
+        <div class="item">
+          <div class="left">
+            Alignment:
+          </div>
+          <div class="right">
+            {alignment}
+          </div>
+        </div>
+        {/block:alignment}
+
+        {block:languages}
+        <div class="item">
+          <div class="left">
+            Languages:
+          </div>
+          <div class="right">
+            {languages}
+          </div>
+        </div>
+        {/block:languages}
+
+        {block:rpg_background}
+        <div class="item">
+          <div class="left">
+            Background:
+          </div>
+          <div class="right">
+            {rpg_background}
+          </div>
+        </div>
+        {/block:rpg_background}
+      </div>
+      {/block:hasrpg}
     </div>
-
-
-
-
-
-
-
-
-    <!---------------------------------------->
-    <!-- Body details -->
-    {block:hasbody}
-    <div id="body" class="details island right-island">
-      <div class="subtitle">
-        Body
-      </div>
-
-      {block:scent}
-      <div class="item">
-        <div class="item-left">
-          Scent:
-        </div>
-        <div class="item-right">
-          {scent}
-        </div>
-      </div>
-      {/block:scent}
-
-      {block:body_texture}
-      <div class="item">
-        <div class="item-left">
-          Body Texture:
-        </div>
-        <div class="item-right">
-          {body_texture}
-        </div>
-      </div>
-      {/block:body_texture}
-
-      {block:eye_color}
-      <div class="item">
-        <div class="item-left">
-          Eye Color:
-        </div>
-        <div class="item-right">
-          {eye_color}
-        </div>
-      </div>
-      {/block:eye_color}
-
-      {block:hair_style}
-      <div class="item">
-        <div class="item-left">
-          Hair Style:
-        </div>
-        <div class="item-right">
-          {hair_style}
-        </div>
-      </div>
-      {/block:hair_style}
-
-      {block:body_chest}
-      <div class="item">
-        <div class="item-left">
-          Chest:
-        </div>
-        <div class="item-right">
-          {body_chest}
-        </div>
-      </div>
-      {/block:body_chest}
-
-      {block:body_groin}
-      <div class="item">
-        <div class="item-left">
-          Groin:
-        </div>
-        <div class="item-right">
-          {body_groin}
-        </div>
-      </div>
-      {/block:body_groin}
-
-      {block:body_extra}
-      <div class="item">
-        <div class="item-left">
-          Extra:
-        </div>
-        <div class="item-right">
-          {body_extra}
-        </div>
-      </div>
-      {/block:body_extra}
-    </div>
-    {/block:hasbody}
-
-    <!---------------------------------------->
-    <!-- Personality details -->
-    {block:haspersonality}
-    <div id="personality" class="details island right-island">
-      <div class="subtitle">
-        Personality
-      </div>
-
-      {block:personality_type}
-      <div class="item">
-        <div class="item-left">
-          Personality Type:
-        </div>
-        <div class="item-right">
-          {personality_type}
-        </div>
-      </div>
-      {/block:personality_type}
-
-      {block:speaking_style}
-      <div class="item">
-        <div class="item-left">
-          Speaking Style:
-        </div>
-        <div class="item-right">
-          {speaking_style}
-        </div>
-      </div>
-      {/block:speaking_style}
-
-      {block:action_tags}
-      <div class="item">
-        <div class="item-left">
-          Action Tags:
-        </div>
-        <div class="item-right">
-          {action_tags}
-        </div>
-      </div>
-      {/block:action_tags}
-
-      {block:verbal_tags}
-      <div class="item">
-        <div class="item-left">
-          Verbal Tags:
-        </div>
-        <div class="item-right">
-          {verbal_tags}
-        </div>
-      </div>
-      {/block:verbal_tags}
-
-      {block:prejudices}
-      <div class="item">
-        <div class="item-left">
-          Prejudices:
-        </div>
-        <div class="item-right">
-          {prejudices}
-        </div>
-      </div>
-      {/block:prejudices}
-
-      {block:sense_of_humor}
-      <div class="item">
-        <div class="item-left">
-          Sense of Humor:
-        </div>
-        <div class="item-right">
-          {sense_of_humor}
-        </div>
-      </div>
-      {/block:sense_of_humor}
-
-      {block:philosophy}
-      <div class="item">
-        <div class="item-left">
-          Philosophy:
-        </div>
-        <div class="item-right">
-          {philosophy}
-        </div>
-      </div>
-      {/block:philosophy}
-
-      {block:preferred_clothing}
-      <div class="item">
-        <div class="item-left">
-          Clothing:
-        </div>
-        <div class="item-right">
-          {preferred_clothing}
-        </div>
-      </div>
-      {/block:preferred_clothing}
-
-      {block:positive_traits}
-      <div class="item">
-        <div class="item-left">
-          Admirable Traits:
-        </div>
-        <div class="item-right">
-          {positive_traits}
-        </div>
-      </div>
-      {/block:positive_traits}
-
-      {block:negative_traits}
-      <div class="item">
-        <div class="item-left">
-          Negative Traits:
-        </div>
-        <div class="item-right">
-          {negative_traits}
-        </div>
-      </div>
-      {/block:negative_traits}
-
-      {block:quirks}
-      <div class="item">
-        <div class="item-left">
-          Quirks:
-        </div>
-        <div class="item-right">
-          {quirks}
-        </div>
-      </div>
-      {/block:quirks}
-
-      {block:special_items}
-      <div class="item">
-        <div class="item-left">
-          Special Items:
-        </div>
-        <div class="item-right">
-          {special_items}
-        </div>
-      </div>
-      {/block:special_items}
-
-      {block:bad_habits}
-      <div class="item">
-        <div class="item-left">
-          Bad Habits:
-        </div>
-        <div class="item-right">
-          {bad_habits}
-        </div>
-      </div>
-      {/block:bad_habits}
-
-      {block:pet_peeves}
-      <div class="item">
-        <div class="item-left">
-          Pet Peeves:
-        </div>
-        <div class="item-right">
-          {pet_peeves}
-        </div>
-      </div>
-      {/block:pet_peeves}
-    </div>
-    {/block:haspersonality}
-
-    <!---------------------------------------->
-    <!-- Lifestyle details -->
-    {block:haslifestyle}
-    <div id="lifestyle" class="details island right-island">
-      <div class="subtitle">
-        Lifestyle
-      </div>
-
-      {block:diet}
-      <div class="item">
-        <div class="item-left">
-          Diet:
-        </div>
-        <div class="item-right">
-          {diet}
-        </div>
-      </div>
-      {/block:diet}
-
-      {block:favorite_foods}
-      <div class="item">
-        <div class="item-left">
-          Favorite Food(s):
-        </div>
-        <div class="item-right">
-          {favorite_foods}
-        </div>
-      </div>
-      {/block:favorite_foods}
-
-      {block:favorite_books}
-      <div class="item">
-        <div class="item-left">
-          Favorite Book(s):
-        </div>
-        <div class="item-right">
-          {favorite_books}
-        </div>
-      </div>
-      {/block:favorite_books}
-
-      {block:favorite_colors}
-      <div class="item">
-        <div class="item-left">
-          Favorite Color(s):
-        </div>
-        <div class="item-right">
-          {favorite_colors}
-        </div>
-      </div>
-      {/block:favorite_colors}
-
-      {block:favorite_places}
-      <div class="item">
-        <div class="item-left">
-          Favorite Place(s):
-        </div>
-        <div class="item-right">
-          {favorite_places}
-        </div>
-      </div>
-      {/block:favorite_places}
-
-      {block:home_life}
-      <div class="item">
-        <div class="item-left">
-          Home Life:
-        </div>
-        <div class="item-right">
-          {home_life}
-        </div>
-      </div>
-      {/block:home_life}
-
-      {block:friends}
-      <div class="item">
-        <div class="item-left">
-          Friends:
-        </div>
-        <div class="item-right">
-          {friends}
-        </div>
-      </div>
-      {/block:friends}
-
-      {block:family}
-      <div class="item">
-        <div class="item-left">
-          Family:
-        </div>
-        <div class="item-right">
-          {family}
-        </div>
-      </div>
-      {/block:family}
-    </div>
-    {/block:haslifestyle}
-
-    <!---------------------------------------->
-    <!-- RPG details -->
-    {block:hasrpg}
-    <div id="rpg" class="details island right-island">
-      <div class="subtitle">
-        RPG
-      </div>
-
-      <!-- a little bit of fancy footwork on the six attributes-->
-      <div id="rpg-stats">
-
-        {block:strength}
-        <div class="rpg-stat">
-          <div class="item-left">
-            Strength
-          </div>
-          <div class="item-right">
-            {strength}
-          </div>
-        </div>
-        {/block:strength}
-
-        {block:intelligence}
-        <div class="rpg-stat">
-          <div class="item-left">
-            Intelligence
-          </div>
-          <div class="item-right">
-            {intelligence}
-          </div>
-        </div>
-        {/block:intelligence}
-
-        {block:wisdom}
-        <div class="rpg-stat">
-          <div class="item-left">
-            Wisdom
-          </div>
-          <div class="item-right">
-            {wisdom}
-          </div>
-        </div>
-        {/block:wisdom}
-
-        {block:dexterity}
-        <div class="rpg-stat">
-          <div class="item-left">
-            Dexterity
-          </div>
-          <div class="item-right">
-            {dexterity}
-          </div>
-        </div>
-        {/block:dexterity}
-
-        {block:constitution}
-        <div class="rpg-stat">
-          <div class="item-left">
-            Constitution
-          </div>
-          <div class="item-right">
-            {constitution}
-          </div>
-        </div>
-        {/block:constitution}
-
-        {block:charisma}
-        <div class="rpg-stat">
-          <div class="item-left">
-            Charisma
-          </div>
-          <div class="item-right">
-            {charisma}
-          </div>
-        </div>
-        {/block:charisma}
-
-      </div>
-
-      {block:rpg_class}
-      <div class="item">
-        <div class="item-left">
-          Class:
-        </div>
-        <div class="item-right">
-          {rpg_class}
-        </div>
-      </div>
-      {/block:rpg_class}
-
-      {block:armor_class}
-      <div class="item">
-        <div class="item-left">
-          Armor Class:
-        </div>
-        <div class="item-right">
-          {armor_class}
-        </div>
-      </div>
-      {/block:armor_class}
-
-      {block:initiative}
-      <div class="item">
-        <div class="item-left">
-          Initiative:
-        </div>
-        <div class="item-right">
-          {initiative}
-        </div>
-      </div>
-      {/block:initiative}
-
-      {block:speed}
-      <div class="item">
-        <div class="item-left">
-          Speed:
-        </div>
-        <div class="item-right">
-          {speed}
-        </div>
-      </div>
-      {/block:speed}
-
-      {block:health}
-      <div class="item">
-        <div class="item-left">
-          Health:
-        </div>
-        <div class="item-right">
-          {health}
-        </div>
-      </div>
-      {/block:health}
-
-      {block:magic}
-      <div class="item">
-        <div class="item-left">
-          Magic:
-        </div>
-        <div class="item-right">
-          {magic}
-        </div>
-      </div>
-      {/block:magic}
-
-      {block:alignment}
-      <div class="item">
-        <div class="item-left">
-          Alignment:
-        </div>
-        <div class="item-right">
-          {alignment}
-        </div>
-      </div>
-      {/block:alignment}
-
-      {block:languages}
-      <div class="item">
-        <div class="item-left">
-          Languages:
-        </div>
-        <div class="item-right">
-          {languages}
-        </div>
-      </div>
-      {/block:languages}
-
-      {block:rpg_background}
-      <div class="item">
-        <div class="item-left">
-          Background:
-        </div>
-        <div class="item-right">
-          {rpg_background}
-        </div>
-      </div>
-      {/block:rpg_background}
-    </div>
-    {/block:hasrpg}
+    
   </div>
-
+  
 </div>
