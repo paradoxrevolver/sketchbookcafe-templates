@@ -4,24 +4,39 @@
 /* ######################################## */
 /* VARIABLES */
 :root {
+  /* colors */
   --white: #FFFFFF;
   --darkgray: #1B1D22;
   --gray: #24262A;
   --lightgray: #676A71;
 
+  /* fonts */
   --titlefont: "Sanchez", serif;
   --bodyfont: "Rubik", Ariel, sans-serif;
 
+  /* font size */
+  --fontsize-md: 11pt;
+  
+  /* animation timing */
   --fly-in-speed: 1.1s;
   --fly-in-stagger: 0.15s;
   --hover-fade-speed: 0.7s;
   --highlight-border-speed: 0.33s;
 
+  /* borders */
   --border-radius: 3px;
   --portrait-border-width: 4px;
+  
+  /* dimensions */
   --left-item-width: 150px;
   --thumbnail-length: 117px;
   --rpg-stat-width: 100px;
+  
+  /* spacing */
+  --spacing-sm: 5px;
+  --spacing-md: 8px;
+  --spacing-lg: calc( var(--spacing-sm) * 2 );
+  --spacing-xl: calc( var(--spacing-sm) * 4 );
 }
 
 
@@ -41,21 +56,139 @@
 }
 
 /* ######################################## */
-/* LAYOUTING */
+/* LARGE SCOPE */
+
+/* container for everything on the page */
+.sbc-wrap {
+  display: flex;
+  flex-direction: column;
+  
+  background-color: var(--gray);
+}
+
+/* change properties of default header and footer */
+#sbcheader, #sbcfooter {
+  background-color: var(--darkgray);
+}
+
+#sbcfooter * {
+  font-family: var(--bodyfont);
+}
+
+#pr {
+  position: relative;
+  
+  flex-grow: 1;
+}
+
+#pr * {
+  font-family: var(--bodyfont);
+  font-size: var(--fontsize-md);
+  color: var(--white);
+}
+
+#pr .cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#pr .cover.background {
+  overflow: hidden;
+}
+
+#pr .cover.page {
+  overflow-x: hidden;
+  overflow-y: auto;
+  
+  max-width: none;
+  
+  /* center all columns across the page */
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+#pr .main.column {
+  margin: var(--spacing-xl) 0;
+  
+  flex: 0 1 960px;
+  
+  /* the main column can wrap things */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+#pr .left.column, #pr .right.column {
+  /* both left and right columns run islands down them */
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+#pr .left.column {
+  flex: 0 1 240px;
+}
+
+#pr .right.column {
+  flex: 0 1 720px;
+}
+
+/* TEMPORARY SETTING FOR TESTING */
+#pr img {
+  width: 100px;
+  height: 100px;
+}
+
+/* ################################################## */
+/* BACKGROUND */
+
+#pr .star-bg {
+  position: absolute;
+  height: 1000vh;
+  width: 1000vw;
+  top: -200vh;
+  left: -200vw;
+  image-rendering: pixelated;
+  
+  animation-name: drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+#pr .star-bg.dim {
+  background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/160-14-QAi1I.png") repeat;
+  animation-duration: 220s;
+}
+#pr .star-bg.small {
+  background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/161-14-KWPbx.png") repeat;
+  animation-duration: 160s;
+}
+#pr .star-bg.big {
+  background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/162-14-E971A.png") repeat;
+  animation-duration: 100s;
+}
 
 
 
 
 
 
+/* ################################################## */
+/* ANIMATIONS */
 
-
-
-
-
-/* ######################################## */
-/* FORMATTING */
-
+/* drifting background stars animation */
+@keyframes drift {
+  from {
+    top: -200vh;
+    left: -200vw;
+  }
+  to {
+    top: calc(-200vh + 1000px);
+    left: calc(-200vw + 2000px);
+  }
+}
 
 
 
