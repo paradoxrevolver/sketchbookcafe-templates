@@ -82,6 +82,8 @@
 }
 
 #pr * {
+  box-sizing: border-box;
+  
   font-family: var(--bodyfont);
   font-size: var(--fontsize-md);
   color: var(--white);
@@ -97,7 +99,7 @@
   overflow: hidden;
 }
 
-#pr .cover.page {
+#pr .cover.page {  
   overflow-x: hidden;
   overflow-y: auto;
   
@@ -109,7 +111,7 @@
   justify-content: center;
 }
 
-#pr .main.column {
+#pr .main.column {  
   margin: var(--spacing-xl) 0;
   
   flex: 0 1 960px;
