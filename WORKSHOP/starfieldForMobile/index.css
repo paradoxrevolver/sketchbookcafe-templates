@@ -1,6 +1,147 @@
-/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}
-
-
+/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+pre {
+  font-family: monospace,monospace;
+  font-size: 1em;
+}
+a {
+  background-color: transparent;
+}
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration: underline dotted;
+}
+b,
+strong {
+  font-weight: bolder;
+}
+code,
+kbd,
+samp {
+  font-family: monospace,monospace;
+  font-size: 1em;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+img {
+  border-style: none;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+button,
+input {
+  overflow: visible;
+}
+button,
+select {
+  text-transform: none;
+}
+[type=button],
+[type=reset],
+[type=submit],
+button {
+  -webkit-appearance: button;
+}
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner,
+button::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring,
+button:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+progress {
+  vertical-align: baseline;
+}
+textarea {
+  overflow: auto;
+}
+[type=checkbox],
+[type=radio] {
+  box-sizing: border-box;
+  padding: 0;
+}
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+[type=search] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+details {
+  display: block;
+}
+summary {
+  display: list-item;
+}
+template {
+  display: none;
+}
+[hidden] {
+  display: none;
+}
 /* ######################################## */
 /* VARIABLES */
 :root {
@@ -9,156 +150,278 @@
   --darkgray: #1B1D22;
   --gray: #24262A;
   --lightgray: #676A71;
-
   /* fonts */
   --titlefont: "Sanchez", serif;
   --bodyfont: "Rubik", Ariel, sans-serif;
-
   /* font size */
+  --fontsize-sm: 10pt;
   --fontsize-md: 11pt;
-  
+  --fontsize-lg: 16pt;
   /* animation timing */
   --fly-in-speed: 1.1s;
   --fly-in-stagger: 0.15s;
   --hover-fade-speed: 0.7s;
   --highlight-border-speed: 0.33s;
-
   /* borders */
   --border-radius: 3px;
   --portrait-border-width: 4px;
-  
   /* dimensions */
   --left-item-width: 150px;
   --thumbnail-length: 117px;
   --rpg-stat-width: 100px;
-  
   /* spacing */
-  --spacing-sm: 5px;
-  --spacing-md: 8px;
-  --spacing-lg: calc( var(--spacing-sm) * 2 );
-  --spacing-xl: calc( var(--spacing-sm) * 4 );
+  --spacing-sm: 6px;
+  --spacing-md: 10px;
+  --spacing-lg: calc(var(--spacing-sm) * 2);
+  --spacing-xl: calc(var(--spacing-sm) * 4);
 }
-
-
-/* ######################################## */
-/* FIXES */
-
-/* fixes problem where font size creates unexpected spacing on links containing images */
-#pr a.image-link,
-#pr a.image-link img
-{
-  font-size: 0pt;
-}
-
-/* fixes phantom spacing underneath images */
-#pr img {
-  vertical-align: middle;
-}
-
-/* ######################################## */
-/* LARGE SCOPE */
-
 /* container for everything on the page */
 .sbc-wrap {
   display: flex;
   flex-direction: column;
-  
   background-color: var(--gray);
 }
-
 /* change properties of default header and footer */
-#sbcheader, #sbcfooter {
+#sbcheader,
+#sbcfooter {
   background-color: var(--darkgray);
 }
-
 #sbcfooter * {
   font-family: var(--bodyfont);
 }
-
 #pr {
+  /* ######################################## */
+  /* FIXES */
+  /* fixes problem where font size creates unexpected spacing on links containing images */
+  /* fixes phantom spacing underneath images */
+  /* ######################################## */
+  /* GENERAL SCOPE */
+  /* ######################################## */
+  /* LARGE SCOPE */
   position: relative;
-  
   flex-grow: 1;
+  /* ################################################## */
+  /* MID SCOPE */
+  /* animations for drawing the border around an island */
+  /* stagger the arrival of every island when sliding in */
+  /* animations for islands sliding in */
+  /* ################################################## */
+  /* SMALL SCOPE */
+  /* ################################################## */
+  /* BACKGROUND */
+  /* drifting background stars animation */
 }
-
+#pr a.image-link,
+#pr a.image-link img {
+  font-size: 0pt;
+}
+#pr img {
+  vertical-align: middle;
+}
+#pr a {
+  color: var(--highlight-color);
+}
+#pr a:hover {
+  color: var(--white);
+}
+#pr .subtitle {
+  width: 100%;
+  font-family: var(--titlefont);
+  font-size: var(--fontsize-sm);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+#pr img {
+  width: 100%;
+  border-radius: var(--border-radius);
+}
 #pr * {
   box-sizing: border-box;
-  
   font-family: var(--bodyfont);
   font-size: var(--fontsize-md);
   color: var(--white);
 }
-
-#pr .cover {
+#pr .cover.background {
   position: absolute;
   width: 100%;
   height: 100%;
-}
-
-#pr .cover.background {
   overflow: hidden;
+  pointer-events: none;
 }
-
-#pr .cover.page {  
-  overflow-x: hidden;
-  overflow-y: auto;
-  
-  max-width: none;
-  
+#pr .cover.page {
   /* center all columns across the page */
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  overflow-x: hidden;
 }
-
-#pr .main.column {  
-  margin: var(--spacing-xl) 0;
-  
+#pr .main {
+  margin: var(--spacing-lg);
   flex: 0 1 960px;
-  
   /* the main column can wrap things */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
 }
-
-#pr .left.column, #pr .right.column {
-  /* both left and right columns run islands down them */
+#pr .column {
+  /* both left and right columns run islands down them, but will later allow for wrapping */
   display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
+  flex-flow: row wrap;
+  padding: 0 var(--spacing-sm);
 }
-
-#pr .left.column {
-  flex: 0 1 240px;
+#pr .column.left {
+  flex: 1 1 240px;
 }
-
-#pr .right.column {
-  flex: 0 1 720px;
+#pr .column.right {
+  flex: 1 1 720px;
 }
-
-/* TEMPORARY SETTING FOR TESTING */
-#pr img {
-  width: 100px;
-  height: 100px;
+#pr .island {
+  position: relative;
+  margin: var(--spacing-sm) 0;
+  padding: var(--spacing-md);
+  background-color: var(--darkgray);
+  border: 1px var(--white) solid;
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  width: 100%;
+  z-index: 10;
+  /* make the line disappearing take longer */
+  transition-duration: calc(var(--highlight-border-speed) * 1.75);
+  /* the border around an island itself */
 }
-
-/* ################################################## */
-/* BACKGROUND */
-
+#pr .island * {
+  /* all transitions in islands should take this long */
+  transition-duration: var(--highlight-border-speed);
+}
+#pr .island:hover {
+  border: 1px rgba(255, 255, 255, 0) solid;
+}
+#pr .island:hover::before {
+  /* play the drawing forwards, revealing the highlight border */
+  animation: borderDraw var(--highlight-border-speed) ease-out 0s backwards;
+}
+#pr .island::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* adjust by one pixel to accomodate border's width*/
+  left: -1px;
+  top: -1px;
+  z-index: 10;
+  /* draw the border itself... this is hidden until user hover's over island */
+  border: 1px var(--highlight-color) solid;
+  border-radius: var(--border-radius);
+  /* make sure the pseudo-element can't be clicked */
+  pointer-events: none;
+  /* play the drawing in reverse, destroying the highlight border */
+  animation: borderErase var(--highlight-border-speed) ease-out 0s forwards;
+}
+@keyframes borderDraw {
+  0% {
+    clip-path: polygon(50% 50%, -50% -50%, -50% -50%, -50% -50%, -50% -50%, -50% -50%);
+  }
+  25% {
+    clip-path: polygon(50% 50%, -50% -50%, 150% -50%, 150% -50%, 150% -50%, 150% -50%);
+  }
+  50% {
+    clip-path: polygon(50% 50%, -50% -50%, 150% -50%, 150% 150%, 150% 150%, 150% 150%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, -50% -50%, 150% -50%, 150% 150%, -50% 150%, -50% 150%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, -50% -50%, 150% -50%, 150% 150%, -50% 150%, -50% -50%);
+  }
+}
+@keyframes borderErase {
+  100% {
+    clip-path: polygon(50% 50%, -50% -50%, -50% -50%, -50% -50%, -50% -50%, -50% -50%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, -50% -50%, 150% -50%, 150% -50%, 150% -50%, 150% -50%);
+  }
+  50% {
+    clip-path: polygon(50% 50%, -50% -50%, 150% -50%, 150% 150%, 150% 150%, 150% 150%);
+  }
+  25% {
+    clip-path: polygon(50% 50%, -50% -50%, 150% -50%, 150% 150%, -50% 150%, -50% 150%);
+  }
+  0% {
+    clip-path: polygon(50% 50%, -50% -50%, 150% -50%, 150% 150%, -50% 150%, -50% -50%);
+  }
+}
+#pr .island {
+  /* stuff related to island animations */
+  animation-duration: var(--fly-in-speed);
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+  animation-fill-mode: backwards;
+  /* islands slide in based on what side they're on */
+}
+#pr .island.left {
+  animation-name: slideInFromLeft;
+}
+#pr .island.right {
+  animation-name: slideInFromRight;
+}
+#pr .column > :nth-child(1) {
+  animation-delay: 0s;
+}
+#pr .column > :nth-child(2) {
+  animation-delay: calc(var(--fly-in-stagger) * 1);
+}
+#pr .column > :nth-child(3) {
+  animation-delay: calc(var(--fly-in-stagger) * 2);
+}
+#pr .column > :nth-child(4) {
+  animation-delay: calc(var(--fly-in-stagger) * 3);
+}
+#pr .column > :nth-child(5) {
+  animation-delay: calc(var(--fly-in-stagger) * 3.75);
+}
+#pr .column > :nth-child(6) {
+  animation-delay: calc(var(--fly-in-stagger) * 4.5);
+}
+#pr .column > :nth-child(7) {
+  animation-delay: calc(var(--fly-in-stagger) * 5.25);
+}
+#pr .column > :nth-child(8) {
+  animation-delay: calc(var(--fly-in-stagger) * 5.75);
+}
+#pr .column > :nth-child(9) {
+  animation-delay: calc(var(--fly-in-stagger) * 6.25);
+}
+#pr .column > :nth-child(10) {
+  animation-delay: calc(var(--fly-in-stagger) * 6.5);
+}
+@keyframes slideInFromLeft {
+  from {
+    right: calc(100vw);
+  }
+  to {
+    right: 0%;
+  }
+}
+@keyframes slideInFromRight {
+  from {
+    left: calc(100vw);
+  }
+  to {
+    left: 0%;
+  }
+}
 #pr .star-bg {
   position: absolute;
   height: 1000vh;
   width: 1000vw;
   top: -200vh;
   left: -200vw;
+  z-index: 0;
   image-rendering: pixelated;
-  
   animation-name: drift;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-
 #pr .star-bg.dim {
   background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/160-14-QAi1I.png") repeat;
   animation-duration: 220s;
@@ -171,16 +434,6 @@
   background: url("https://s3-us-west-2.amazonaws.com/sketchbookcafe/images/162-14-E971A.png") repeat;
   animation-duration: 100s;
 }
-
-
-
-
-
-
-/* ################################################## */
-/* ANIMATIONS */
-
-/* drifting background stars animation */
 @keyframes drift {
   from {
     top: -200vh;
@@ -191,10 +444,3 @@
     left: calc(-200vw + 2000px);
   }
 }
-
-
-
-
-
-
-

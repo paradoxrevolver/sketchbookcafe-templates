@@ -34,7 +34,7 @@
   <!-- page content covers the entire page -->
   <div class="page cover">
     
-    <div class="main column">
+    <div class="main">
       <div class="left column">
 
       <!-- The character's portrait, including name, title, and quote -->
@@ -183,7 +183,7 @@
       <!---------------------------------------->
       <!-- Description -->
       {block:description}
-      <div id="description" class="right island details">
+      <div id="description" class="right island text">
         <div class="subtitle">
           Description
         </div>
@@ -220,16 +220,16 @@
           </div>
 
           <div class="thumbs">
-            {block:post_thumb_url0}<div class="thumb"><a href="{post_url0}"><img src="{post_thumb_url0}"></a></div>{/block:post_thumb_url0}
-            {block:post_thumb_url1}<div class="thumb"><a href="{post_url1}"><img src="{post_thumb_url1}"></a></div>{/block:post_thumb_url1}
-            {block:post_thumb_url2}<div class="thumb"><a href="{post_url2}"><img src="{post_thumb_url2}"></a></div>{/block:post_thumb_url2}
-            {block:post_thumb_url3}<div class="thumb"><a href="{post_url3}"><img src="{post_thumb_url3}"></a></div>{/block:post_thumb_url3}
-            {block:post_thumb_url4}<div class="thumb"><a href="{post_url4}"><img src="{post_thumb_url4}"></a></div>{/block:post_thumb_url4}
-            {block:post_thumb_url5}<div class="thumb"><a href="{post_url5}"><img src="{post_thumb_url5}"></a></div>{/block:post_thumb_url5}
-            {block:post_thumb_url6}<div class="thumb"><a href="{post_url6}"><img src="{post_thumb_url6}"></a></div>{/block:post_thumb_url6}
-            {block:post_thumb_url7}<div class="thumb"><a href="{post_url7}"><img src="{post_thumb_url7}"></a></div>{/block:post_thumb_url7}
-            {block:post_thumb_url8}<div class="thumb"><a href="{post_url8}"><img src="{post_thumb_url8}"></a></div>{/block:post_thumb_url8}
-            {block:post_thumb_url9}<div class="thumb"><a href="{post_url9}"><img src="{post_thumb_url9}"></a></div>{/block:post_thumb_url9}
+            {block:post_thumb_url0}<div class="thumb"><a class="image-link" href="{post_url0}"><img src="{post_thumb_url0}"></a></div>{/block:post_thumb_url0}
+            {block:post_thumb_url1}<div class="thumb"><a class="image-link" href="{post_url1}"><img src="{post_thumb_url1}"></a></div>{/block:post_thumb_url1}
+            {block:post_thumb_url2}<div class="thumb"><a class="image-link" href="{post_url2}"><img src="{post_thumb_url2}"></a></div>{/block:post_thumb_url2}
+            {block:post_thumb_url3}<div class="thumb"><a class="image-link" href="{post_url3}"><img src="{post_thumb_url3}"></a></div>{/block:post_thumb_url3}
+            {block:post_thumb_url4}<div class="thumb"><a class="image-link" href="{post_url4}"><img src="{post_thumb_url4}"></a></div>{/block:post_thumb_url4}
+            {block:post_thumb_url5}<div class="thumb"><a class="image-link" href="{post_url5}"><img src="{post_thumb_url5}"></a></div>{/block:post_thumb_url5}
+            {block:post_thumb_url6}<div class="thumb"><a class="image-link" href="{post_url6}"><img src="{post_thumb_url6}"></a></div>{/block:post_thumb_url6}
+            {block:post_thumb_url7}<div class="thumb"><a class="image-link" href="{post_url7}"><img src="{post_thumb_url7}"></a></div>{/block:post_thumb_url7}
+            {block:post_thumb_url8}<div class="thumb"><a class="image-link" href="{post_url8}"><img src="{post_thumb_url8}"></a></div>{/block:post_thumb_url8}
+            {block:post_thumb_url9}<div class="thumb"><a class="image-link" href="{post_url9}"><img src="{post_thumb_url9}"></a></div>{/block:post_thumb_url9}
           </div>
 
           <div class="button">
@@ -250,7 +250,7 @@
 
       <!---------------------------------------->
       <!-- Character details -->
-      <div id="character" class="right island details">
+      <div id="character" class="right island text">
         <div class="subtitle">
           Character
         </div>
@@ -443,17 +443,10 @@
         {/block:c_text_value1}
       </div>
 
-
-
-
-
-
-
-
       <!---------------------------------------->
       <!-- Body details -->
       {block:hasbody}
-      <div id="body" class="right island details">
+      <div id="body" class="right island text">
         <div class="subtitle">
           Body
         </div>
@@ -540,7 +533,7 @@
       <!---------------------------------------->
       <!-- Personality details -->
       {block:haspersonality}
-      <div id="personality" class="right island details">
+      <div id="personality" class="right island text">
         <div class="subtitle">
           Personality
         </div>
@@ -704,7 +697,7 @@
       <!---------------------------------------->
       <!-- Lifestyle details -->
       {block:haslifestyle}
-      <div id="lifestyle" class="right island details">
+      <div id="lifestyle" class="right island text">
         <div class="subtitle">
           Lifestyle
         </div>
@@ -802,7 +795,7 @@
       <!---------------------------------------->
       <!-- RPG details -->
       {block:hasrpg}
-      <div id="rpg" class="right island details">
+      <div id="rpg" class="right island text">
         <div class="subtitle">
           RPG
         </div>
