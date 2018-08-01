@@ -15,9 +15,11 @@
   --bodyfont: "Rubik", Ariel, sans-serif;
 
   /* font size */
+  --fontsize-xs: 8pt;
   --fontsize-sm: 10pt;
   --fontsize-md: 11pt;
-  --fontsize-lg: 16pt;
+  --fontsize-lg: 14pt;
+  --fontsize-xl: 16pt;
   
   /* animation timing */
   --fly-in-speed: 1.1s;
@@ -33,12 +35,13 @@
   --left-item-width: 150px;
   --thumbnail-length: 117px;
   --rpg-stat-width: 100px;
+  --owner-avatar-width: 50px;
   
   /* spacing */
   --spacing-sm: 6px;
   --spacing-md: 10px;
   --spacing-lg: calc( var(--spacing-sm) * 2 );
-  --spacing-xl: calc( var(--spacing-sm) * 4 );
+  --spacing-xl: calc( var(--spacing-md) * 2 );
 }
 
 
@@ -51,91 +54,120 @@
   flex-direction: column;
 
   background-color: var(--gray);
-}
 
-/* change properties of default header and footer */
-#sbcheader, #sbcfooter {
-  background-color: var(--darkgray);
-}
+  /* change properties of default header and footer */
+  #sbcheader, #sbcfooter {
+    background-color: var(--darkgray);
+  }
 
-#sbcfooter * {
-  font-family: var(--bodyfont);
+  #sbcfooter * {
+    font-family: var(--bodyfont);
+  }
 }
 
 #pr {
   
   /* ######################################## */
   /* FIXES */
-
+  
   /* fixes problem where font size creates unexpected spacing on links containing images */
-  a.image-link,
-  a.image-link img
+  a,
+  a img
   {
     font-size: 0pt;
   }
-
+  
   /* fixes phantom spacing underneath images */
   img {
     vertical-align: middle;
   }
-
-
-
-
-
+  
+  
+  
+  
+  
+  
+  
+  
   /* ######################################## */
-  /* GENERAL SCOPE */
-
-  a {
-    color: var(--highlight-color);
-    
-    &:hover {
-      color: var(--white);
-    }
-  }
-
-  .subtitle {
-    width: 100%;
-    
-    font-family: var(--titlefont);
-    font-size: var(--fontsize-sm);
-    font-weight: bold;
-    text-transform: uppercase;
-  }
+  /* GENERAL FORMATTING */
   
   img {
     width: 100%;
     
     border-radius: var(--border-radius);
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
+  /* changing links and important things on island hover */
+  .island:hover {
+    a, .subtitle {
+      color: var(--highlight-color);
+    }
+    
+    .button a {
+      color: var(--white);
+    }
+    
+    a:hover {
+      color: var(--white);
+    }
+  }
+  
+  .subtitle {
+    font-family: var(--titlefont);
+    font-size: var(--fontsize-sm);
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .button {
+    display: inline-block;
+    
+    padding: 3px 5px;
+    border: 1px white solid;
+    border-radius: var(--border-radius);
+    
+    text-align: center;
+    
+    a {
+      font-size: var(--fontsize-sm);
+      font-weight: normal;
+    }
+    
+    &:hover {
+      background-color: var(--lightgray);
+      
+      a {
+        color: var(--white);
+      }
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   /* ######################################## */
   /* LARGE SCOPE */
-
-    position: relative;
-    flex-grow: 1;
-
+  
+  position: relative;
+  flex-grow: 1;
+  
   * {
     box-sizing: border-box;
-
+    
     font-family: var(--bodyfont);
     font-size: var(--fontsize-md);
     color: var(--white);
   }
-
+  
   .cover {
     &.background {
       position: absolute;
@@ -155,24 +187,23 @@
       overflow-x: hidden;
     }
   }
-
+  
   .main {  
     margin: var(--spacing-lg);
-
+    
     flex: 0 1 960px;
-
+    
     /* the main column can wrap things */
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
   }
-
+  
   .column {
     /* both left and right columns run islands down them, but will later allow for wrapping */
     display: flex;
     flex-flow: row wrap;
-
-    padding: 0 var(--spacing-sm);
+    align-content: flex-start;
     
     &.left {
       flex: 1 1 240px;
@@ -182,50 +213,79 @@
       flex: 1 1 720px;
     }
   }
-
-
-
-
-
-
-
-
-
+  
+  /* specific flexing for island wrapping */
+  .island {
+    flex: 1 0 200px;
+    
+    &.left {
+      &#portrait       { flex: 1 1 200px; align-self: flex-end; }
+      &#signature      { flex: 99 1 480px; align-self: flex-end; }
+      &#featured-image { flex: 4 1 320px; align-self: flex-start; }
+      &#tags           { flex: 4 1 180px; align-self: flex-start; }
+      &#colors         { flex: 4 1 180px; align-self: flex-start; }
+      
+      @media screen and (max-width: 790px) {
+        &#portrait     { flex: 3 1 210px; }
+        &#signature    { flex: 9 1 210px; }
+      }
+    }
+    
+    &.right {
+      flex: 1 1 720px;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
   /* ################################################## */
   /* MID SCOPE */
-
+  
+  /* general island changes */
   .island {
     position: relative;
-
-    margin: var(--spacing-sm) 0;
-    padding: var(--spacing-md);
-
-    background-color: var(--darkgray);
-    border: 1px var(--white) solid;
-    border-radius: var(--border-radius);
-
+    
     box-sizing: border-box;
-    width: 100%;
     z-index: 10;
-
-    /* make the line disappearing take longer */
-    transition-duration: calc( var(--highlight-border-speed) * 1.75 );
+    
+    margin: var(--spacing-sm);
+    padding: 0 var(--spacing-md) var(--spacing-md) 0;
+    
+    background-color: var(--darkgray);
+    
+    > div {
+      margin: var(--spacing-md) 0 0 var(--spacing-md);
+    }
     
     * {
       /* all transitions in islands should take this long */
       transition-duration: var(--highlight-border-speed);
     }
+  }
+  
+  /* island white border */
+  .island {
+    border: 1px var(--white) solid;
+    border-radius: var(--border-radius);
+    
+    /* make the line disappearing take longer */
+    transition-duration: calc( var(--highlight-border-speed) * 1.75 );
     
     &:hover {
       border: 1px hsla(0, 0%, 100%, 0) solid;
-      
-      &::before {
-        /* play the drawing forwards, revealing the highlight border */
-        animation: borderDraw var(--highlight-border-speed) ease-out 0s backwards;
-      }
     }
-
-    /* the border around an island itself */
+  }
+  
+  /* appearing highlight border */
+  .island {
+    
+    /* the highlight border that should appear */
     &::before {
       content: "";
       position: absolute;
@@ -234,18 +294,23 @@
       /* adjust by one pixel to accomodate border's width*/
       left: -1px;
       top: -1px;
-      z-index: 10;
+      z-index: 20;
       /* draw the border itself... this is hidden until user hover's over island */
       border: 1px var(--highlight-color) solid;
       border-radius: var(--border-radius);
       /* make sure the pseudo-element can't be clicked */
       pointer-events: none;
-
+      
       /* play the drawing in reverse, destroying the highlight border */
       animation: borderErase var(--highlight-border-speed) ease-out 0s forwards;
     }
+    
+    &:hover::before {
+      /* play the drawing forwards, revealing the highlight border */
+      animation: borderDraw var(--highlight-border-speed) ease-out 0s backwards;
+    }
   }
-
+  
   /* animations for drawing the border around an island */
   @keyframes borderDraw {
     0%   { clip-path: polygon( 50%  50%, -50% -50%, -50% -50%, -50% -50%, -50% -50%,  -50% -50%); }
@@ -254,7 +319,7 @@
     75%  { clip-path: polygon( 50%  50%, -50% -50%, 150% -50%, 150% 150%, -50% 150%,  -50% 150%); }
     100% { clip-path: polygon( 50%  50%, -50% -50%, 150% -50%, 150% 150%, -50% 150%,  -50% -50%); }
   }
-
+  
   @keyframes borderErase {
     100% { clip-path: polygon( 50%  50%, -50% -50%, -50% -50%, -50% -50%, -50% -50%,  -50% -50%); }
     75%  { clip-path: polygon( 50%  50%, -50% -50%, 150% -50%, 150% -50%, 150% -50%,  150% -50%); }
@@ -263,12 +328,12 @@
     0%   { clip-path: polygon( 50%  50%, -50% -50%, 150% -50%, 150% 150%, -50% 150%,  -50% -50%); }
   }
 
+  /* stuff related to island slide animations */
   .island {
-    /* stuff related to island animations */
     animation-duration: var(--fly-in-speed);
     animation-timing-function: cubic-bezier(.25, 1, .5, 1);
     animation-fill-mode: backwards;
-
+    
     /* islands slide in based on what side they're on */
     &.left {
       animation-name: slideInFromLeft;
@@ -278,7 +343,7 @@
       animation-name: slideInFromRight;
     }
   }
-
+  
   /* stagger the arrival of every island when sliding in */
   .column >:nth-child(1) { animation-delay: 0s; }
   .column >:nth-child(2) { animation-delay: calc( var(--fly-in-stagger) * 1.00 ); }
@@ -290,7 +355,7 @@
   .column >:nth-child(8) { animation-delay: calc( var(--fly-in-stagger) * 5.75 ); }
   .column >:nth-child(9) { animation-delay: calc( var(--fly-in-stagger) * 6.25 ); }
   .column >:nth-child(10){ animation-delay: calc( var(--fly-in-stagger) * 6.50 ); }
-
+  
   /* animations for islands sliding in */
   @keyframes slideInFromLeft {
     from {
@@ -300,7 +365,7 @@
       right: 0%;
     }
   }
-
+  
   @keyframes slideInFromRight {
     from {
       left: calc(100vw);
@@ -309,36 +374,134 @@
       left: 0%;
     }
   }
-
-
-
-
-
-
-
+  
+  
+  
+  
+  
   /* ################################################## */
   /* SMALL SCOPE */
-
-
-
-
-
-
-
-
+  
+  #portrait {
+    border: var(--portrait-border-width) white double;
+    border-radius: calc( var(--border-radius) + var(--portrait-border-width) );
+    text-align: center;
+    
+    .name {
+      a {
+        font-size: var(--fontsize-xl);
+        font-weight: bold;
+      }
+    }
+    
+    .title {
+      margin-top: 0;
+    }
+    
+    .quote {
+      margin-top: var(--spacing-sm);
+    }
+    
+    .name, .title {
+      a {
+        font-family: var(--titlefont);
+        text-transform: uppercase;
+      }
+    }
+    
+    .title a, .quote em {
+      font-size: var(--fontsize-sm);
+    }
+    
+    &:hover {
+      border: var(--portrait-border-width) hsla(0, 0%, 100%, 0) double;
+    }
+    
+    &::before {
+      border-style: double;
+      border-width: var(--portrait-border-width);
+      border-radius: calc( var(--border-radius) + var(--portrait-border-width) );
+      left: calc( -1 * var(--portrait-border-width) );
+      top: calc( -1 * var(--portrait-border-width) );
+    }
+  }
+  
+  #signature {
+    .avatar a img {
+      width: var(--owner-avatar-width);
+    }
+    
+    .owner {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      
+      .name {
+        margin-left: var(--spacing-md);
+        
+        a {
+          font-size: var(--fontsize-lg);
+        }
+      }
+    }
+    
+    .signature, .signature * {
+      font-size: var(--fontsize-sm);
+    }
+  }
+  
+  #tags {
+    .list {
+      margin: calc( var(--spacing-md) - var(--spacing-sm) ) 0 0 calc( var(--spacing-md) - var(--spacing-sm) );
+      
+      display: flex;
+      flex-direction: row wrap;
+      
+      @media screen and (max-width: 1000px) {
+        display: flex;
+        flex-flow: row wrap;
+        
+        .tag {
+          flex: 1 0 100px;
+        }
+      }
+      
+      .tag {
+        margin-top: var(--spacing-sm);
+        margin-left: var(--spacing-sm);
+      }
+    }
+  }
+  
+  #gallery {
+    .subtitle {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    
+    .button a {
+      padding: 0px 4px 2px 4px;
+      font-size: var(--fontsize-xs);
+    }
+  }
+  
+  
+  
+  
   /* ################################################## */
   /* BACKGROUND */
-
+  
   .star-bg {
     position: absolute;
     height: 1000vh;
     width: 1000vw;
     top: -200vh;
     left: -200vw;
-
+    
     z-index: 0;
     image-rendering: pixelated;
-
+    
     animation-name: drift;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -358,7 +521,7 @@
       animation-duration: 100s;
     }
   }
-
+  
   /* drifting background stars animation */
   @keyframes drift {
     from {
@@ -370,8 +533,14 @@
       left: calc(-200vw + 2000px);
     }
   }
-
+  
 }
+
+
+
+
+
+
 
 
 
