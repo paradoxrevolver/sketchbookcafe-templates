@@ -154,7 +154,7 @@ template {
   --titlefont: "Sanchez", serif;
   --bodyfont: "Rubik", Ariel, sans-serif;
   /* font size */
-  --fontsize-xs: 8pt;
+  --fontsize-xs: 9pt;
   --fontsize-sm: 10pt;
   --fontsize-md: 11pt;
   --fontsize-lg: 14pt;
@@ -169,10 +169,12 @@ template {
   --portrait-border-width: 4px;
   /* dimensions */
   --left-item-width: 150px;
-  --thumbnail-length: 117px;
+  --thumbnail-length: 100px;
+  --gallery-button-width: 40px;
   --rpg-stat-width: 100px;
   --owner-avatar-width: 50px;
   /* spacing */
+  --spacing-xs: 5px;
   --spacing-sm: 6px;
   --spacing-md: 10px;
   --spacing-lg: calc(var(--spacing-sm) * 2);
@@ -249,12 +251,13 @@ template {
 }
 #pr .button {
   display: inline-block;
-  padding: 3px 5px;
   border: 1px white solid;
   border-radius: var(--border-radius);
   text-align: center;
 }
 #pr .button a {
+  display: inline-block;
+  padding: 3px 5px;
   font-size: var(--fontsize-sm);
   font-weight: normal;
 }
@@ -263,6 +266,29 @@ template {
 }
 #pr .button:hover a {
   color: var(--white);
+}
+#pr .item {
+  display: flex;
+  flex-flow: row nowrap;
+}
+#pr .item .left {
+  flex: 0 1 var(--left-item-width);
+  text-align: right;
+  font-size: var(--fontsize-sm);
+  text-transform: uppercase;
+}
+#pr .item .right {
+  flex: 1 1 0;
+  margin-left: var(--spacing-sm);
+}
+@media screen and (max-width: 425px) {
+  #pr .item {
+    flex-flow: column nowrap;
+  }
+  #pr .item .left {
+    flex: 1 1 0;
+    text-align: left;
+  }
 }
 #pr * {
   box-sizing: border-box;
@@ -308,31 +334,28 @@ template {
   flex: 1 0 200px;
 }
 #pr .island.left#portrait {
-  flex: 1 1 200px;
+  flex: 1 1 220px;
   align-self: flex-end;
 }
 #pr .island.left#signature {
-  flex: 99 1 480px;
+  flex: 999 1 480px;
   align-self: flex-end;
 }
 #pr .island.left#featured-image {
   flex: 4 1 320px;
-  align-self: flex-start;
 }
 #pr .island.left#tags {
   flex: 4 1 180px;
-  align-self: flex-start;
 }
 #pr .island.left#colors {
   flex: 4 1 180px;
-  align-self: flex-start;
 }
 @media screen and (max-width: 790px) {
   #pr .island.left#portrait {
-    flex: 3 1 210px;
+    flex: 1 1 220px;
   }
   #pr .island.left#signature {
-    flex: 9 1 210px;
+    flex: 999 1 220px;
   }
 }
 #pr .island.right {
@@ -533,7 +556,11 @@ template {
 #pr #tags .list {
   margin: calc(var(--spacing-md) - var(--spacing-sm)) 0 0 calc(var(--spacing-md) - var(--spacing-sm));
   display: flex;
-  flex-direction: row wrap;
+  flex-flow: row wrap;
+}
+#pr #tags .list .tag {
+  margin-top: var(--spacing-sm);
+  margin-left: var(--spacing-sm);
 }
 @media screen and (max-width: 1000px) {
   #pr #tags .list {
@@ -541,21 +568,145 @@ template {
     flex-flow: row wrap;
   }
   #pr #tags .list .tag {
-    flex: 1 0 100px;
+    flex: 1 1 200px;
+    display: flex;
+    justify-content: center;
+  }
+  #pr #tags .list .tag a {
+    flex: 1 1 200px;
+    padding: 5px;
   }
 }
-#pr #tags .list .tag {
+#pr #colors .list {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: calc(var(--spacing-md) - var(--spacing-sm));
+}
+#pr #colors .list .color {
+  flex: 1 1 200px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+#pr #colors .list .color .name {
   margin-top: var(--spacing-sm);
-  margin-left: var(--spacing-sm);
+  margin-right: var(--spacing-sm);
+}
+#pr #colors .list .color .hex {
+  flex: 0 1 72px;
+  margin-top: var(--spacing-sm);
+  padding: 2px;
+  border-radius: var(--border-radius);
+}
+#pr #colors .list .color .hex .code {
+  font-family: var(--titlefont);
+  font-size: var(--fontsize-xs);
+  line-height: 1.5em;
+  text-transform: uppercase;
+  text-align: center;
+  /* ridiculously, this gives the hex codes a black outline. it's important. */
+  text-shadow: 1.3px 0px black, 1.3px 1.3px black, 0px 1.3px black, -1.3px 1.3px black, -1.3px 0px black, 0px -1.3px black, 1.3px -1.3px black, 1.3px 0px black, 1.3px 1.3px black, 0px 1.3px black, -1.3px 1.3px black, -1.3px 0px black, 0px -1.3px black, 1.3px -1.3px black;
+  /* keep it smooth... this may actually not be necessary */
+  -webkit-font-smoothing: antialiased;
 }
 #pr #gallery .subtitle {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
-#pr #gallery .button a {
-  padding: 0px 4px 2px 4px;
+#pr #gallery .subtitle .button a {
+  margin: 2px 0px 0px 0px;
   font-size: var(--fontsize-xs);
+}
+#pr #gallery .bar {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-top: calc(var(--spacing-md) - var(--spacing-sm));
+}
+#pr #gallery .bar .button {
+  flex: 1 0 var(--gallery-button-width);
+  margin-top: var(--spacing-sm);
+  display: flex;
+}
+#pr #gallery .bar .button a {
+  flex: 1 0 0;
+  font-size: var(--fontsize-xl);
+  font-family: var(--titlefont);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#pr #gallery .bar .thumbs {
+  flex: 999 1 100%;
+  padding-right: var(--spacing-sm);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+#pr #gallery .bar .thumbs .thumb {
+  flex: 0 0 var(--thumbnail-length);
+  margin-top: var(--spacing-sm);
+  margin-left: var(--spacing-sm);
+}
+#pr #gallery .bar .thumbs .thumb img {
+  width: var(--thumbnail-length);
+  height: var(--thumbnail-length);
+  object-fit: cover;
+  object-position: 50% 50%;
+  font-size: 0pt;
+}
+@media screen and (max-width: 425px) {
+  #pr #gallery .bar {
+    flex-flow: column nowrap;
+  }
+  #pr #gallery .bar .thumbs .thumb {
+    flex: 0 0 calc(var(--thumbnail-length) * 1);
+  }
+  #pr #gallery .bar .thumbs .thumb img {
+    width: calc(var(--thumbnail-length) * 1);
+    height: calc(var(--thumbnail-length) * 1);
+  }
+}
+#pr #rpg-stats {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  margin-top: 0;
+}
+#pr #rpg-stats .wrapper {
+  flex: 0 1 var(--rpg-stat-width);
+  margin: 0 var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+#pr #rpg-stats .wrapper .stat {
+  flex: 0 0 var(--rpg-stat-width);
+  border: 1px var(--white) solid;
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+#pr #rpg-stats .wrapper .stat .left {
+  border-bottom: 1px white solid;
+  padding: 3px 0;
+  font-size: var(--fontsize-sm);
+  text-transform: uppercase;
+  text-align: center;
+}
+#pr #rpg-stats .wrapper .stat .right {
+  text-align: center;
+  font-size: 24pt;
+  margin: 21px 0;
+}
+@media screen and (max-width: 767px) and (min-width: 449px) {
+  #pr #rpg-stats .wrapper {
+    flex: 0 1 30%;
+  }
 }
 #pr .star-bg {
   position: absolute;

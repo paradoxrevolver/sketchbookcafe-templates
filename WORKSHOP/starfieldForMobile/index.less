@@ -15,7 +15,7 @@
   --bodyfont: "Rubik", Ariel, sans-serif;
 
   /* font size */
-  --fontsize-xs: 8pt;
+  --fontsize-xs: 9pt;
   --fontsize-sm: 10pt;
   --fontsize-md: 11pt;
   --fontsize-lg: 14pt;
@@ -33,11 +33,13 @@
   
   /* dimensions */
   --left-item-width: 150px;
-  --thumbnail-length: 117px;
+  --thumbnail-length: 100px;
+  --gallery-button-width: 40px;
   --rpg-stat-width: 100px;
   --owner-avatar-width: 50px;
   
   /* spacing */
+  --spacing-xs: 5px;
   --spacing-sm: 6px;
   --spacing-md: 10px;
   --spacing-lg: calc( var(--spacing-sm) * 2 );
@@ -64,6 +66,12 @@
     font-family: var(--bodyfont);
   }
 }
+
+
+
+
+
+
 
 #pr {
   
@@ -123,13 +131,16 @@
   .button {
     display: inline-block;
     
-    padding: 3px 5px;
     border: 1px white solid;
     border-radius: var(--border-radius);
     
     text-align: center;
     
     a {
+      display: inline-block;
+      
+      padding: 3px 5px;
+      
       font-size: var(--fontsize-sm);
       font-weight: normal;
     }
@@ -143,9 +154,33 @@
     }
   }
   
-  
-  
-  
+  .item {
+    display: flex;
+    flex-flow: row nowrap;
+    
+    .left {
+      flex: 0 1 var(--left-item-width);
+      text-align: right;
+      
+      font-size: var(--fontsize-sm);
+      text-transform: uppercase;
+    }
+    
+    .right {
+      flex: 1 1 0;
+      margin-left: var(--spacing-sm);
+    }
+
+    @media screen and (max-width: 425px) {
+      flex-flow: column nowrap;
+      
+      .left {
+        flex: 1 1 0;
+        text-align: left;
+      }
+      
+    }
+  }
   
   
   
@@ -219,15 +254,15 @@
     flex: 1 0 200px;
     
     &.left {
-      &#portrait       { flex: 1 1 200px; align-self: flex-end; }
-      &#signature      { flex: 99 1 480px; align-self: flex-end; }
-      &#featured-image { flex: 4 1 320px; align-self: flex-start; }
-      &#tags           { flex: 4 1 180px; align-self: flex-start; }
-      &#colors         { flex: 4 1 180px; align-self: flex-start; }
+      &#portrait       { flex: 1 1 220px; align-self: flex-end; }
+      &#signature      { flex: 999 1 480px; align-self: flex-end; }
+      &#featured-image { flex: 4 1 320px; }
+      &#tags           { flex: 4 1 180px; }
+      &#colors         { flex: 4 1 180px; }
       
       @media screen and (max-width: 790px) {
-        &#portrait     { flex: 3 1 210px; }
-        &#signature    { flex: 9 1 210px; }
+        &#portrait     { flex: 1 1 220px; }
+        &#signature    { flex: 999 1 220px; }
       }
     }
     
@@ -274,12 +309,12 @@
     border: 1px var(--white) solid;
     border-radius: var(--border-radius);
     
-    /* make the line disappearing take longer */
-    transition-duration: calc( var(--highlight-border-speed) * 1.75 );
-    
     &:hover {
       border: 1px hsla(0, 0%, 100%, 0) solid;
     }
+    
+    /* make the line disappearing take longer */
+    transition-duration: calc( var(--highlight-border-speed) * 1.75 );
   }
   
   /* appearing highlight border */
@@ -455,20 +490,71 @@
       margin: calc( var(--spacing-md) - var(--spacing-sm) ) 0 0 calc( var(--spacing-md) - var(--spacing-sm) );
       
       display: flex;
-      flex-direction: row wrap;
+      flex-flow: row wrap;
+      
+      .tag {
+        margin-top: var(--spacing-sm);
+        margin-left: var(--spacing-sm);
+      }
       
       @media screen and (max-width: 1000px) {
         display: flex;
         flex-flow: row wrap;
         
         .tag {
-          flex: 1 0 100px;
+          flex: 1 1 200px;
+          
+          display: flex;
+          justify-content: center;
+          
+          a {
+            flex: 1 1 200px;
+            padding: 5px;
+          }
         }
       }
+    }
+  }
+  
+  #colors {
+    .list {
+      display: flex;
+      flex-flow: row wrap;
       
-      .tag {
-        margin-top: var(--spacing-sm);
-        margin-left: var(--spacing-sm);
+      margin-top: calc( var(--spacing-md) - var(--spacing-sm) );
+      
+      .color {
+        flex: 1 1 200px;
+        
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-end;
+        
+        .name {
+          margin-top: var(--spacing-sm);
+          margin-right: var(--spacing-sm);
+        }
+        
+        .hex {
+          flex: 0 1 72px;
+          
+          margin-top: var(--spacing-sm);
+          padding: 2px;
+          
+          border-radius: var(--border-radius);
+          
+          .code {
+            font-family: var(--titlefont);
+            font-size: var(--fontsize-xs);
+            line-height: 1.5em;
+            text-transform: uppercase;
+            text-align: center;
+            /* ridiculously, this gives the hex codes a black outline. it's important. */
+            text-shadow: 1.3px 0px black, 1.3px 1.3px black, 0px 1.3px black, -1.3px 1.3px black, -1.3px 0px black, 0px -1.3px black, 1.3px -1.3px black,  1.3px 0px black, 1.3px 1.3px black, 0px 1.3px black, -1.3px 1.3px black, -1.3px 0px black, 0px -1.3px black, 1.3px -1.3px black;
+            /* keep it smooth... this may actually not be necessary */
+            -webkit-font-smoothing: antialiased;
+          }
+        }
       }
     }
   }
@@ -478,15 +564,133 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      
+      .button a {
+        margin: 2px 0px 0px 0px;
+        font-size: var(--fontsize-xs);
+      }
     }
     
-    .button a {
-      padding: 0px 4px 2px 4px;
-      font-size: var(--fontsize-xs);
+    .bar {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      
+      margin-top: calc( var(--spacing-md) - var(--spacing-sm) );
+      
+      .button {
+        flex: 1 0 var(--gallery-button-width);
+        
+        margin-top: var(--spacing-sm);
+        
+        display: flex;
+        
+        a {
+          flex: 1 0 0;
+          
+          font-size: var(--fontsize-xl);
+          font-family: var(--titlefont);
+          
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+      
+      .thumbs {
+        flex: 999 1 100%;
+        
+        padding-right: var(--spacing-sm);
+        
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        
+        .thumb {
+          flex: 0 0 var(--thumbnail-length);
+          
+          margin-top: var(--spacing-sm);
+          margin-left: var(--spacing-sm);
+          
+          img {
+            width: var(--thumbnail-length);
+            height: var(--thumbnail-length);
+            
+            object-fit: cover;
+            object-position: 50% 50%;
+            font-size: 0pt;
+          }
+        }
+      }
+    }
+    
+    @media screen and (max-width: 425px) {
+      .bar {
+        flex-flow: column nowrap;
+        
+        .thumbs {
+          .thumb {
+            flex: 0 0 calc( var(--thumbnail-length) * 1 );
+            
+            img {
+              width: calc( var(--thumbnail-length) * 1 );
+              height: calc( var(--thumbnail-length) * 1 );
+            }
+          }
+        }
+      }
     }
   }
   
-  
+  #rpg-stats {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    
+    margin-top: 0;
+    
+    .wrapper {
+      flex: 0 1 var(--rpg-stat-width);
+      
+      margin: 0 var(--spacing-sm);
+      margin-top: var(--spacing-md);
+      
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      
+      .stat {
+        flex: 0 0 var(--rpg-stat-width);
+        
+        border: 1px var(--white) solid;
+        border-radius: var(--border-radius);
+        
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        
+        .left {
+          border-bottom: 1px white solid;
+          padding: 3px 0;
+          
+          font-size: var(--fontsize-sm);
+          text-transform: uppercase;
+          text-align: center;
+        }
+        
+        .right {
+          text-align: center;
+          font-size: 24pt;
+          margin: 21px 0;
+        }
+      }
+      
+      @media screen and (max-width: 767px) and (min-width: 449px) {
+        flex: 0 1 30%;
+      }
+    }
+  }
   
   
   /* ################################################## */
