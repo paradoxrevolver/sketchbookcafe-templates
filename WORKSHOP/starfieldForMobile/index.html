@@ -19,10 +19,15 @@ image-link: if there's an img in here, then this link is an image-link.
 
 -->
 
+<style>
+  :root {
+    --highlight-color: rgb({color_rgb0});
+    --highlight-color-rgb: {color_rgb0};
+  }
+</style>
 
 <!-- the main body of everything -->
-<!-- the inline style here is to pull the user's first color into the css as a highlight color -->
-<div id="pr" style="--highlight-color: #{color_value0}">
+<div id="pr">
 
   <!-- background covers the entire page -->
   <div class="background cover">
@@ -208,14 +213,18 @@ image-link: if there's an img in here, then this link is an image-link.
           </div>
 
           <div class="bar">
-            <div class="button">
-              <a href="{page_prev}" class="disabled">
-                «
-              </a>
+            <div class="wrapper">
+              <div class="button disabled">
+                <a href="{page_prev}">
+                  «
+                </a>
+              </div>
               {block:page_prev}
-              <a href="{page_prev}" class="enabled">
-                «
-              </a>
+              <div class="button enabled">
+                <a href="{page_prev}">
+                  «
+                </a>
+              </div>
               {/block:page_prev}
             </div>
 
@@ -232,21 +241,24 @@ image-link: if there's an img in here, then this link is an image-link.
               {block:post_thumb_url9}<div class="thumb image-link"><a href="{post_url9}"><img src="{post_thumb_url9}"></a></div>{/block:post_thumb_url9}
             </div>
 
-            <div class="button">
-              <a href="{page_next}" class="disabled">
-                »
-              </a>
+            <div class="wrapper">
+              <div class="button disabled">
+                <a href="{page_next}">
+                  »
+                </a>
+              </div>
               {block:page_next}
-              <a href="{page_next}" class="enabled">
-                »
-              </a>
+              <div class="button enabled">
+                <a href="{page_next}">
+                  »
+                </a>
+              </div>
               {/block:page_next}
             </div>
 
           </div>
         </div>
         {/block:post_url0}
-
 
         <!---------------------------------------->
         <!-- Character details -->

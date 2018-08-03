@@ -9,7 +9,7 @@
   --darkgray: #1B1D22;
   --gray: #24262A;
   --lightgray: #676A71;
-
+  
   /* fonts */
   --titlefont: "Sanchez", serif;
   --bodyfont: "Rubik", Ariel, sans-serif;
@@ -47,14 +47,11 @@
 }
 
 
-
-
-
 /* container for everything on the page */
 .sbc-wrap {
   display: flex;
   flex-direction: column;
-
+  
   background-color: var(--gray);
 
   /* change properties of default header and footer */
@@ -67,10 +64,10 @@
   }
 }
 
-
-
-
-
+*::selection {
+  background-color: ~"rgba( var(--highlight-color-rgb), 0.25 )";
+  color: var(--highlight-color);
+}
 
 
 #pr {
@@ -89,9 +86,6 @@
   img {
     vertical-align: middle;
   }
-  
-  
-  
   
   
   
@@ -169,6 +163,8 @@
     .right {
       flex: 1 1 0;
       margin-left: var(--spacing-sm);
+      
+      word-break: break-word;
     }
 
     @media screen and (max-width: 425px) {
@@ -181,9 +177,6 @@
       
     }
   }
-  
-  
-  
   
   
   
@@ -256,9 +249,9 @@
     &.left {
       &#portrait       { flex: 1 1 220px; align-self: flex-end; }
       &#signature      { flex: 999 1 480px; align-self: flex-end; }
-      &#featured-image { flex: 4 1 320px; }
-      &#tags           { flex: 4 1 180px; }
-      &#colors         { flex: 4 1 180px; }
+      &#featured-image { flex: 4 1 360px; align-self: flex-start; }
+      &#tags           { flex: 4 1 180px; align-self: flex-start; }
+      &#colors         { flex: 4 1 180px; align-self: flex-start; }
       
       @media screen and (max-width: 790px) {
         &#portrait     { flex: 1 1 220px; }
@@ -270,11 +263,6 @@
       flex: 1 1 720px;
     }
   }
-  
-  
-  
-  
-  
   
   
   
@@ -412,8 +400,6 @@
   
   
   
-  
-  
   /* ################################################## */
   /* SMALL SCOPE */
   
@@ -525,20 +511,25 @@
       
       .color {
         flex: 1 1 200px;
+
+        margin-top: var(--spacing-sm);
         
         display: flex;
         flex-flow: row wrap;
         justify-content: flex-end;
         
         .name {
-          margin-top: var(--spacing-sm);
-          margin-right: var(--spacing-sm);
+          text-align: right;
+          
+          line-height: 1.5em;
         }
         
         .hex {
           flex: 0 1 72px;
           
-          margin-top: var(--spacing-sm);
+          align-self: flex-start;
+          
+          margin-left: var(--spacing-sm);
           padding: 2px;
           
           border-radius: var(--border-radius);
@@ -578,24 +569,43 @@
       
       margin-top: calc( var(--spacing-md) - var(--spacing-sm) );
       
-      .button {
-        flex: 1 0 var(--gallery-button-width);
-        
+      .wrapper {
         margin-top: var(--spacing-sm);
         
-        display: flex;
+        flex: 0 0 var(--gallery-button-width);
         
-        a {
-          flex: 1 0 0;
-          
-          font-size: var(--fontsize-xl);
-          font-family: var(--titlefont);
-          
+        display: inline-block;
+        position: relative;
+        
+        .button {
+          height: 100%;
+          width: 100%;
+
           display: flex;
-          justify-content: center;
-          align-items: center;
+
+          a {
+            flex: 1 0 0;
+
+            font-size: var(--fontsize-xl);
+            font-family: var(--titlefont);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          &.disabled {
+            opacity: 0.25;
+            pointer-events: none;
+          }
+
+          &.enabled {
+            position: absolute;
+            top: 0;
+          }
         }
       }
+      
       
       .thumbs {
         flex: 999 1 100%;
@@ -629,13 +639,17 @@
       .bar {
         flex-flow: column nowrap;
         
-        .thumbs {
-          .thumb {
-            flex: 0 0 calc( var(--thumbnail-length) * 1 );
-            
-            img {
-              width: calc( var(--thumbnail-length) * 1 );
-              height: calc( var(--thumbnail-length) * 1 );
+        .wrapper {
+          flex: inherit;
+          
+          .thumbs {
+            .thumb {
+              flex: 0 0 calc( var(--thumbnail-length) * 1 );
+
+              img {
+                width: calc( var(--thumbnail-length) * 1 );
+                height: calc( var(--thumbnail-length) * 1 );
+              }
             }
           }
         }
@@ -646,7 +660,7 @@
   #rpg-stats {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     
     margin-top: 0;
     
@@ -691,6 +705,8 @@
       }
     }
   }
+  
+  
   
   
   /* ################################################## */
